@@ -1,0 +1,38 @@
+{
+  "vinks": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "newgenstory_fanatic_version:novyi_proiekt",
+        "stream": false
+      }
+    ]
+  },
+  "newproject21": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "newgenstory_fanatic_version:novyi_proiekt1",
+        "stream": false
+      }
+    ]
+  },
+  "loran": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "newgenstory_fanatic_version:novyi_proiekt21",
+        "stream": false
+      }
+    ]
+  },
+  "newproject32": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "newgenstory_fanatic_version:novyi_proiekt32",
+        "stream": false
+      }
+    ]
+  }
+}

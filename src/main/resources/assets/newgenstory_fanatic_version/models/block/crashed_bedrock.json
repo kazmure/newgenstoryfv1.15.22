@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "newgenstory_fanatic_version:blocks/bedrock",
+    "up": "newgenstory_fanatic_version:blocks/bedrock",
+    "north": "newgenstory_fanatic_version:blocks/bedrock",
+    "east": "newgenstory_fanatic_version:blocks/bedrock",
+    "south": "newgenstory_fanatic_version:blocks/bedrock",
+    "west": "newgenstory_fanatic_version:blocks/bedrock",
+    "particle": "newgenstory_fanatic_version:blocks/bedrock"
+  }
+}

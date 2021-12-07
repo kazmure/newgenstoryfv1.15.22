@@ -1,0 +1,22 @@
+{
+  "group": "newgenstory_fanatic_version",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012"
+  ],
+  "key": {
+    "0": {
+      "item": "newgenstory_fanatic_version:loran_21"
+    },
+    "1": {
+      "item": "minecraft:obsidian"
+    },
+    "2": {
+      "item": "newgenstory_fanatic_version:loran_21"
+    }
+  },
+  "result": {
+    "item": "newgenstory_fanatic_version:crashed_abyssal_obsidian",
+    "count": 1
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "newgenstory_fanatic_version:block/loran"
+    },
+    "half=lower": {
+      "model": "newgenstory_fanatic_version:block/loran_bottom"
+    }
+  }
+}

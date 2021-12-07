@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "newgenstory_fanatic_version:blocks/crashedabyssalobsidian",
+    "up": "newgenstory_fanatic_version:blocks/crashedabyssalobsidian",
+    "north": "newgenstory_fanatic_version:blocks/crashedabyssalobsidian",
+    "east": "newgenstory_fanatic_version:blocks/crashedabyssalobsidian",
+    "south": "newgenstory_fanatic_version:blocks/crashedabyssalobsidian",
+    "west": "newgenstory_fanatic_version:blocks/crashedabyssalobsidian",
+    "particle": "newgenstory_fanatic_version:blocks/crashedabyssalobsidian"
+  }
+}

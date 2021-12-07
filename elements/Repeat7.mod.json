@@ -1,0 +1,11 @@
+{
+  "_fv": 24,
+  "_type": "command",
+  "definition": {
+    "commandName": "repeat7",
+    "permissionLevel": "No requirement",
+    "onCommandExecuted": {
+      "name": "Repeat7CommandExecuted"
+    }
+  }
+}

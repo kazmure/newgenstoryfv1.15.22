@@ -1,0 +1,42 @@
+{
+  "group": "newgenstory_fanatic_version",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "newgenstory_fanatic_version:crashed_abyssal_obsidian"
+    },
+    "1": {
+      "item": "newgenstory_fanatic_version:abyssal_ingot"
+    },
+    "2": {
+      "item": "newgenstory_fanatic_version:crashed_abyssal_obsidian"
+    },
+    "3": {
+      "item": "newgenstory_fanatic_version:abysal_gem"
+    },
+    "4": {
+      "item": "minecraft:tnt"
+    },
+    "5": {
+      "item": "newgenstory_fanatic_version:abysal_gem"
+    },
+    "6": {
+      "item": "newgenstory_fanatic_version:crashed_abyssal_obsidian"
+    },
+    "7": {
+      "item": "newgenstory_fanatic_version:abyssal_ingot"
+    },
+    "8": {
+      "item": "newgenstory_fanatic_version:crashed_abyssal_obsidian"
+    }
+  },
+  "result": {
+    "item": "newgenstory_fanatic_version:magic_tnt",
+    "count": 1
+  }
+}

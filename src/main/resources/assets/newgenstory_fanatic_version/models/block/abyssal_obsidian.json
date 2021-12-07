@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "newgenstory_fanatic_version:blocks/abyssal_obsisian",
+    "up": "newgenstory_fanatic_version:blocks/abyssal_obsisian",
+    "north": "newgenstory_fanatic_version:blocks/abyssal_obsisian",
+    "east": "newgenstory_fanatic_version:blocks/abyssal_obsisian",
+    "south": "newgenstory_fanatic_version:blocks/abyssal_obsisian",
+    "west": "newgenstory_fanatic_version:blocks/abyssal_obsisian",
+    "particle": "newgenstory_fanatic_version:blocks/abyssal_obsisian"
+  }
+}

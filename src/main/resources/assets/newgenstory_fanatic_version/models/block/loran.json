@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "newgenstory_fanatic_version:blocks/abbysal_top",
+    "particle": "newgenstory_fanatic_version:blocks/abbysal_top"
+  }
+}
