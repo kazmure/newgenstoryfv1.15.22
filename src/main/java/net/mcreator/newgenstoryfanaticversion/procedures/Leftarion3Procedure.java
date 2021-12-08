@@ -1,11 +1,36 @@
 package net.mcreator.newgenstoryfanaticversion.procedures;
 
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.common.MinecraftForge;
+
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.World;
+import net.minecraft.world.IWorld;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec2f;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.Entity;
+import net.minecraft.command.ICommandSource;
+import net.minecraft.command.CommandSource;
+
+import net.mcreator.newgenstoryfanaticversion.entity.LeftarionStartEntity;
+import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModVariables;
+import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
+import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionMod;
+
+import java.util.Map;
+
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.ModElement {
-
 	public Leftarion3Procedure(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 85);
-
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -34,13 +59,11 @@ public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.Mo
 				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency world for procedure Leftarion3!");
 			return;
 		}
-
 		Entity entity = (Entity) dependencies.get("entity");
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
-
 		if ((((entity.getCapability(NewgenstoryFanaticVersionModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new NewgenstoryFanaticVersionModVariables.PlayerVariables())).EnterPlayer) == 19)) {
 			if (world instanceof World && !world.getWorld().isRemote) {
@@ -48,19 +71,15 @@ public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.Mo
 				entityToSpawn.setLocationAndAngles(x, (y + 50), z, (float) 0, (float) 0);
 				entityToSpawn.setRenderYawOffset((float) 0);
 				entityToSpawn.setRotationYawHead((float) 0);
-
 				if (entityToSpawn instanceof MobEntity)
 					((MobEntity) entityToSpawn).onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entityToSpawn)),
 							SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);
-
 				world.addEntity(entityToSpawn);
 			}
 			new Object() {
-
 				private int ticks = 0;
 				private float waitTicks;
 				private IWorld world;
-
 				public void start(IWorld world, int waitTicks) {
 					this.waitTicks = waitTicks;
 					MinecraftForge.EVENT_BUS.register(this);
@@ -83,11 +102,9 @@ public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.Mo
 								(false));
 					}
 					new Object() {
-
 						private int ticks = 0;
 						private float waitTicks;
 						private IWorld world;
-
 						public void start(IWorld world, int waitTicks) {
 							this.waitTicks = waitTicks;
 							MinecraftForge.EVENT_BUS.register(this);
@@ -111,11 +128,9 @@ public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.Mo
 										"kill @e[type=newgenstory_fanatic_version:leftarion_start]");
 							}
 							new Object() {
-
 								private int ticks = 0;
 								private float waitTicks;
 								private IWorld world;
-
 								public void start(IWorld world, int waitTicks) {
 									this.waitTicks = waitTicks;
 									MinecraftForge.EVENT_BUS.register(this);
@@ -142,17 +157,12 @@ public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.Mo
 									}
 									MinecraftForge.EVENT_BUS.unregister(this);
 								}
-
 							}.start(world, (int) 40000);
-
 							MinecraftForge.EVENT_BUS.unregister(this);
 						}
-
 					}.start(world, (int) 200);
-
 					MinecraftForge.EVENT_BUS.unregister(this);
 				}
-
 			}.start(world, (int) 200);
 			{
 				double _setval = (double) 20;
@@ -162,7 +172,5 @@ public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.Mo
 				});
 			}
 		}
-
 	}
-
 }

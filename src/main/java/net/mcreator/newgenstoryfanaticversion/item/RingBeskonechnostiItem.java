@@ -1,24 +1,29 @@
 
 package net.mcreator.newgenstoryfanaticversion.item;
 
+import net.minecraftforge.registries.ObjectHolder;
+
+import net.minecraft.item.Rarity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
+import net.minecraft.block.BlockState;
+
+import net.mcreator.newgenstoryfanaticversion.itemgroup.NewGenStoryItemGroup;
+import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
+
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class RingBeskonechnostiItem extends NewgenstoryFanaticVersionModElements.ModElement {
-
 	@ObjectHolder("newgenstory_fanatic_version:ring_beskonechnosti")
 	public static final Item block = null;
-
 	public RingBeskonechnostiItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 85);
-
 	}
 
 	@Override
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
-
 	public static class ItemCustom extends Item {
-
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(64).rarity(Rarity.COMMON));
 			setRegistryName("ring_beskonechnosti");
@@ -38,7 +43,5 @@ public class RingBeskonechnostiItem extends NewgenstoryFanaticVersionModElements
 		public float getDestroySpeed(ItemStack par1ItemStack, BlockState par2Block) {
 			return 1F;
 		}
-
 	}
-
 }
