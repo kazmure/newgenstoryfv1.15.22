@@ -1477,6 +1477,15 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "dialog"
+    },
+    {
+      "name": "RingBeskonechnosti",
+      "type": "item",
+      "sortid": 85,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "ring_beskonechnosti"
     }
   ],
   "variable_elements": [
@@ -1547,11 +1556,12 @@
   ],
   "language_map": {
     "en_us": {
+      "item.newgenstory_fanatic_version.ring_beskonechnosti": "Ring Beskonechnosti",
       "item.newgenstory_fanatic_version.the_lomgds_spawn_egg": "TheLomgds Spawn Egg",
       "item.newgenstory_fanatic_version.fairy_lololoshka_21_spawn_egg": "Fairy Spawn Egg",
       "item.newgenstory_fanatic_version.fragment_3": "Fragment",
-      "subtitles.vinks": "",
       "item.newgenstory_fanatic_version.runa_ganon": "Runa Ganon",
+      "subtitles.vinks": "",
       "entity.newgenstory_fanatic_version.fairy": "Fairy",
       "item.newgenstory_fanatic_version.zeit_boots": "Zeit Boots",
       "item.newgenstory_fanatic_version.abysal_gem": "Abysal Gem",
