@@ -1,0 +1,30 @@
+{
+  "_fv": 24,
+  "_type": "tool",
+  "definition": {
+    "renderType": 0,
+    "texture": "bur2",
+    "customModelName": "Normal",
+    "name": "Dril",
+    "specialInfo": [],
+    "creativeTab": {
+      "value": "CUSTOM:NewGenStory"
+    },
+    "toolType": "Pickaxe",
+    "harvestLevel": 100,
+    "efficiency": 6.0,
+    "attackSpeed": 1.0,
+    "enchantability": 100,
+    "damageVsEntity": 5.0,
+    "usageCount": 5000,
+    "blocksAffected": [],
+    "hasGlow": false,
+    "repairItems": [],
+    "immuneToFire": false,
+    "stayInGridWhenCrafting": false,
+    "damageOnCrafting": false,
+    "onBlockDestroyedWithTool": {
+      "name": "DrilBlockDestroyedWithTool"
+    }
+  }
+}

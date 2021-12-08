@@ -1,0 +1,36 @@
+{
+  "_fv": 24,
+  "_type": "item",
+  "definition": {
+    "renderType": 0,
+    "texture": "oghon_dlia_tielieportatsii",
+    "customModelName": "Normal",
+    "name": "Maghichieskii Oghon",
+    "rarity": "EPIC",
+    "creativeTab": {
+      "value": "CUSTOM:NewGenStory"
+    },
+    "stackSize": 64,
+    "enchantability": 1,
+    "useDuration": 0,
+    "toolType": 1.0,
+    "damageCount": 1,
+    "recipeRemainder": {
+      "value": "Blocks.FIRE"
+    },
+    "destroyAnyBlock": true,
+    "immuneToFire": false,
+    "stayInGridWhenCrafting": true,
+    "damageOnCrafting": true,
+    "enableMeleeDamage": false,
+    "damageVsEntity": 1.0,
+    "specialInfo": [
+      "Магический Огонь очень не стабилен"
+    ],
+    "hasGlow": false,
+    "guiBoundTo": "<NONE>",
+    "inventorySize": 64,
+    "inventoryStackSize": 64,
+    "hasDispenseBehavior": false
+  }
+}

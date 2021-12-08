@@ -1,0 +1,42 @@
+{
+  "group": "newgenstory_fanatic_version",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "aoa3:gold_spring"
+    },
+    "1": {
+      "item": "aoa3:energistic_pickaxe"
+    },
+    "2": {
+      "item": "aoa3:gold_spring"
+    },
+    "3": {
+      "item": "aoa3:power_core"
+    },
+    "4": {
+      "item": "aoa3:distorting_artifact"
+    },
+    "5": {
+      "item": "aoa3:power_core"
+    },
+    "6": {
+      "item": "aoa3:gold_spring"
+    },
+    "7": {
+      "item": "aoa3:energistic_pickaxe"
+    },
+    "8": {
+      "item": "aoa3:gold_spring"
+    }
+  },
+  "result": {
+    "item": "newgenstory_fanatic_version:dril",
+    "count": 1
+  }
+}

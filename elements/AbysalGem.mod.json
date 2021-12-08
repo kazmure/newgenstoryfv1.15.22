@@ -8,7 +8,7 @@
     "name": "Abysal Gem",
     "rarity": "COMMON",
     "creativeTab": {
-      "value": "MISC"
+      "value": "CUSTOM:NewGenStory"
     },
     "stackSize": 64,
     "enchantability": 0,

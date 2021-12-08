@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "newgenstory_fanatic_version:items/bur2"
+  }
+}

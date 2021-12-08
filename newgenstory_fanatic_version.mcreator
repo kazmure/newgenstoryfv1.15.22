@@ -1135,6 +1135,306 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "fairy_new_lololoshka"
+    },
+    {
+      "name": "DrilBlockDestroyedWithTool",
+      "type": "procedure",
+      "sortid": 55,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "dril_block_destroyed_with_tool",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Dril",
+      "type": "tool",
+      "sortid": 55,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "dril"
+    },
+    {
+      "name": "NewGenStory",
+      "type": "tab",
+      "sortid": 56,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "new_gen_story"
+    },
+    {
+      "name": "Zeit",
+      "type": "armor",
+      "sortid": 57,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "zeit",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      }
+    },
+    {
+      "name": "Tea",
+      "type": "food",
+      "sortid": 58,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "tea"
+    },
+    {
+      "name": "TeaGrip",
+      "type": "food",
+      "sortid": 59,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "tea_grip"
+    },
+    {
+      "name": "AwakenedRunikSword",
+      "type": "tool",
+      "sortid": 60,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "awakened_runik_sword"
+    },
+    {
+      "name": "RunaGanon",
+      "type": "item",
+      "sortid": 61,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "runa_ganon"
+    },
+    {
+      "name": "Medalion",
+      "type": "item",
+      "sortid": 62,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "medalion"
+    },
+    {
+      "name": "VoidRuna",
+      "type": "item",
+      "sortid": 63,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "void_runa"
+    },
+    {
+      "name": "RingFly",
+      "type": "item",
+      "sortid": 64,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "ring_fly"
+    },
+    {
+      "name": "MagicFire",
+      "type": "item",
+      "sortid": 65,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "magic_fire"
+    },
+    {
+      "name": "MagicFire1",
+      "type": "item",
+      "sortid": 66,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "magic_fire_1"
+    },
+    {
+      "name": "Dogovor",
+      "type": "item",
+      "sortid": 67,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "dogovor"
+    },
+    {
+      "name": "CleanWatter",
+      "type": "item",
+      "sortid": 68,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "clean_watter"
+    },
+    {
+      "name": "Letter",
+      "type": "item",
+      "sortid": 69,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "letter"
+    },
+    {
+      "name": "MagicMap",
+      "type": "item",
+      "sortid": 70,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "magic_map"
+    },
+    {
+      "name": "BlackMedalion",
+      "type": "item",
+      "sortid": 71,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "black_medalion"
+    },
+    {
+      "name": "VolosSirana",
+      "type": "item",
+      "sortid": 72,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "volos_sirana"
+    },
+    {
+      "name": "OceanPoation",
+      "type": "item",
+      "sortid": 73,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "ocean_poation"
+    },
+    {
+      "name": "Lidenec",
+      "type": "food",
+      "sortid": 74,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "lidenec"
+    },
+    {
+      "name": "Sfera",
+      "type": "item",
+      "sortid": 75,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "sfera"
+    },
+    {
+      "name": "Fragment3",
+      "type": "item",
+      "sortid": 76,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fragment_3"
+    },
+    {
+      "name": "Fragment31",
+      "type": "item",
+      "sortid": 77,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fragment_31"
+    },
+    {
+      "name": "Fragment32",
+      "type": "item",
+      "sortid": 78,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fragment_32"
+    },
+    {
+      "name": "ImprovedHazmat",
+      "type": "armor",
+      "sortid": 79,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "improved_hazmat",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      }
+    },
+    {
+      "name": "Fragment31ItemInInventoryTick",
+      "type": "procedure",
+      "sortid": 80,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fragment_31_item_in_inventory_tick",
+      "metadata": {
+        "dependencies": []
+      }
+    },
+    {
+      "name": "TheLomgds",
+      "type": "livingentity",
+      "sortid": 81,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "the_lomgds"
+    },
+    {
+      "name": "Drill",
+      "type": "recipe",
+      "sortid": 82,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "drill"
     }
   ],
   "variable_elements": [
@@ -1205,46 +1505,79 @@
   ],
   "language_map": {
     "en_us": {
-      "item.newgenstory_fanatic_version.paper_21": "Бумага",
-      "entity.newgenstory_fanatic_version.fairy_old_lololoshka": "Fairy",
+      "item.newgenstory_fanatic_version.the_lomgds_spawn_egg": "TheLomgds Spawn Egg",
       "item.newgenstory_fanatic_version.fairy_lololoshka_21_spawn_egg": "Fairy Spawn Egg",
-      "item.newgenstory_fanatic_version.frayer_123_spawn_egg": "Frayer 123 Spawn Egg",
+      "item.newgenstory_fanatic_version.fragment_3": "Фрагмент Скрижали",
+      "item.newgenstory_fanatic_version.runa_ganon": "Руна Темноты",
       "subtitles.vinks": "",
       "entity.newgenstory_fanatic_version.fairy": "Fairy",
+      "item.newgenstory_fanatic_version.zeit_boots": "Зейтовые Ботинки",
+      "item.newgenstory_fanatic_version.abysal_gem": "Гем",
+      "block.newgenstory_fanatic_version.crashed_bedrock": "Бедрок",
+      "itemGroup.tabnew_gen_story": "New Gen Story",
+      "subtitles.loran": "",
+      "item.newgenstory_fanatic_version.letter": "Письмо",
+      "item.newgenstory_fanatic_version.lidenec": "Бесконечный Лиденец",
+      "block.newgenstory_fanatic_version.crashed_bedrock_1": "Бедрок",
+      "entity.newgenstory_fanatic_version.frayer_123": "Frayer 123",
+      "item.newgenstory_fanatic_version.fairy_new_lololoshka_spawn_egg": "Fairy Spawn Egg",
+      "entity.newgenstory_fanatic_version.fairy_new_lololoshka": "Fairy",
+      "block.newgenstory_fanatic_version.crashed_abyssal_obsidian": "Разрушиный Пустотный обсидиан",
+      "item.newgenstory_fanatic_version.tea": "Чай",
+      "item.newgenstory_fanatic_version.clean_watter": "Ведро с Очищающим Раствором",
+      "item.newgenstory_fanatic_version.abyssal_ingot": "Пустотный слиток",
+      "item.newgenstory_fanatic_version.improved_hazmat_leggings": "Улучшеные Поножи Химзащиты",
+      "entity.newgenstory_fanatic_version.leftarion_start": "Лефтерион",
+      "item.newgenstory_fanatic_version.magic_map": "Магический Огонь",
+      "item.newgenstory_fanatic_version.leftarion_spawn_egg": "Лефтерион Spawn Egg",
+      "item.newgenstory_fanatic_version.magic_fire": "Магический Огонь",
+      "item.newgenstory_fanatic_version.improved_hazmat_helmet": "Улучшеный Шлем Химзащиты",
+      "item.newgenstory_fanatic_version.gorbatic_start_spawn_egg": "Горбатик Spawn Egg",
+      "entity.newgenstory_fanatic_version.kazmur": "kazmur",
+      "subtitles.newproject21": "",
+      "item.newgenstory_fanatic_version.zeit_helmet": "Зейтовый Шлем",
+      "entity.newgenstory_fanatic_version.the_lomgds": "TheLomgds",
+      "item.newgenstory_fanatic_version.paper_21": "Бумага",
+      "entity.newgenstory_fanatic_version.fairy_old_lololoshka": "Fairy",
+      "item.newgenstory_fanatic_version.black_medalion": "Медальон",
+      "item.newgenstory_fanatic_version.frayer_123_spawn_egg": "Frayer 123 Spawn Egg",
+      "item.newgenstory_fanatic_version.void_runa": "Руна Тьмы",
       "entity.newgenstory_fanatic_version.fairy_21": "Fairy",
       "block.newgenstory_fanatic_version.loran": "Лоран",
       "item.newgenstory_fanatic_version.leftarion_start_spawn_egg": "Лефтерион Spawn Egg",
       "block.newgenstory_fanatic_version.magic_tnt": "Магический динамит",
       "entity.newgenstory_fanatic_version.reterion": "Рейтерион",
+      "item.newgenstory_fanatic_version.ocean_poation": "Зелье Моря",
       "entity.newgenstory_fanatic_version.gorbatic_start": "Горбатик",
-      "item.newgenstory_fanatic_version.abysal_gem": "Abysal Gem",
-      "block.newgenstory_fanatic_version.crashed_bedrock": "Crashed Bedrock",
+      "item.newgenstory_fanatic_version.ring_fly": "Кольцо Полёта",
       "advancements.start_1.descr": "Путь в неизвестность",
-      "subtitles.loran": "",
+      "item.newgenstory_fanatic_version.improved_hazmat_boots": "Улучшеные Ботинки Химзащиты",
       "advancements.start_1.title": "Начало",
       "item.newgenstory_fanatic_version.fairy_spawn_egg": "Fairy Spawn Egg",
+      "item.newgenstory_fanatic_version.improved_hazmat_chestplate": "Улучшеный Нагрудник Химзащиты",
       "subtitles.newproject32": "",
-      "block.newgenstory_fanatic_version.crashed_bedrock_1": "Crashed Bedrock",
-      "entity.newgenstory_fanatic_version.frayer_123": "Frayer 123",
-      "item.newgenstory_fanatic_version.paper_32": "Paper",
+      "item.newgenstory_fanatic_version.paper_32": "Бумага",
+      "item.newgenstory_fanatic_version.tea_grip": "Грибной Чай",
       "entity.newgenstory_fanatic_version.fairy_lololoshka_21": "Fairy",
-      "item.newgenstory_fanatic_version.fairy_new_lololoshka_spawn_egg": "Fairy Spawn Egg",
-      "block.newgenstory_fanatic_version.crashed_abyssal_obsidian": "Разрушиный Пустотный обсидиан",
-      "entity.newgenstory_fanatic_version.fairy_new_lololoshka": "Fairy",
-      "item.newgenstory_fanatic_version.abyssal_ingot": "Пустотный слиток",
-      "entity.newgenstory_fanatic_version.leftarion_start": "Лефтерион",
-      "item.newgenstory_fanatic_version.leftarion_spawn_egg": "Лефтерион Spawn Egg",
+      "item.newgenstory_fanatic_version.zeit_chestplate": "Зейтовый Нагрудник",
+      "item.newgenstory_fanatic_version.medalion": "Медальон",
+      "item.newgenstory_fanatic_version.dogovor": "Договор",
       "item.newgenstory_fanatic_version.kazmur_spawn_egg": "kazmur Spawn Egg",
+      "item.newgenstory_fanatic_version.fragment_32": "Фрагмент Скрижали",
       "item.newgenstory_fanatic_version.loran_21": "Лоран",
+      "item.newgenstory_fanatic_version.zeit_leggings": "Зейтовые Поножи",
       "block.newgenstory_fanatic_version.abyssal_obsidian": "Пустотный обсидиан",
       "item.newgenstory_fanatic_version.fairy_21_spawn_egg": "Fairy Spawn Egg",
       "entity.newgenstory_fanatic_version.reiterion_21": "Рейтерион",
+      "item.newgenstory_fanatic_version.magic_fire_1": "Магический Огонь",
+      "item.newgenstory_fanatic_version.sfera": "Сфера",
+      "item.newgenstory_fanatic_version.fragment_31": "Фрагмент Скрижали",
+      "item.newgenstory_fanatic_version.dril": "Dril",
+      "item.newgenstory_fanatic_version.awakened_runik_sword": "Пробуждёный Рунный Меч",
       "entity.newgenstory_fanatic_version.leftarion": "Лефтерион",
-      "item.newgenstory_fanatic_version.gorbatic_start_spawn_egg": "Горбатик Spawn Egg",
+      "item.newgenstory_fanatic_version.volos_sirana": "Волос Сирены",
       "item.newgenstory_fanatic_version.reiterion_21_spawn_egg": "Рейтерион Spawn Egg",
       "item.newgenstory_fanatic_version.reterion_spawn_egg": "Рейтерион Spawn Egg",
-      "entity.newgenstory_fanatic_version.kazmur": "kazmur",
-      "subtitles.newproject21": "",
       "item.newgenstory_fanatic_version.fairy_old_lololoshka_spawn_egg": "Fairy Spawn Egg"
     }
   },
