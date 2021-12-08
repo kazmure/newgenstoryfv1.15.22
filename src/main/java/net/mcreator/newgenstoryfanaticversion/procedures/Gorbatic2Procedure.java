@@ -12,10 +12,14 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.potion.Effects;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.Entity;
 import net.minecraft.command.ICommandSource;
@@ -389,25 +393,6 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																																		"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> *\u0432\u0436\u0443\u0445 *"),
 																																(false));
 																											}
-																											if (!world.getWorld().isRemote && world
-																													.getWorld().getServer() != null) {
-																												world.getWorld().getServer()
-																														.getCommandManager()
-																														.handleCommand(
-																																new CommandSource(
-																																		ICommandSource.DUMMY,
-																																		new Vec3d(x,
-																																				y, z),
-																																		Vec2f.ZERO,
-																																		(ServerWorld) world,
-																																		4, "",
-																																		new StringTextComponent(
-																																				""),
-																																		world.getWorld()
-																																				.getServer(),
-																																		null).withFeedbackDisabled(),
-																																"kill @e[type=newgenstory_fanatic_version:gorbatic_start]");
-																											}
 																											new Object() {
 																												private int ticks = 0;
 																												private float waitTicks;
@@ -431,22 +416,146 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																												}
 
 																												private void run() {
-																													{
-																														double _setval = (double) 19;
-																														entity.getCapability(
-																																NewgenstoryFanaticVersionModVariables.PLAYER_VARIABLES_CAPABILITY,
-																																null).ifPresent(
-																																		capability -> {
-																																			capability.EnterPlayer = _setval;
-																																			capability
-																																					.syncPlayerVariables(
-																																							entity);
-																																		});
+																													if (entity instanceof LivingEntity)
+																														((LivingEntity) entity)
+																																.addPotionEffect(
+																																		new EffectInstance(
+																																				Effects.LEVITATION,
+																																				(int) 200,
+																																				(int) 255,
+																																				(false),
+																																				(false)));
+																													if (world instanceof ServerWorld) {
+																														((ServerWorld) world)
+																																.spawnParticle(
+																																		ParticleTypes.CLOUD,
+																																		x, y, z,
+																																		(int) 1, 3, 3,
+																																		3, 1);
 																													}
+																													if (world instanceof ServerWorld) {
+																														((ServerWorld) world)
+																																.spawnParticle(
+																																		ParticleTypes.CLOUD,
+																																		x, y, z,
+																																		(int) 1, 3, 3,
+																																		3, 1);
+																													}
+																													if (world instanceof ServerWorld) {
+																														((ServerWorld) world)
+																																.spawnParticle(
+																																		ParticleTypes.CLOUD,
+																																		x, y, z,
+																																		(int) 1, 3, 3,
+																																		3, 1);
+																													}
+																													if (world instanceof ServerWorld) {
+																														((ServerWorld) world)
+																																.spawnParticle(
+																																		ParticleTypes.CLOUD,
+																																		x, y, z,
+																																		(int) 1, 3, 3,
+																																		3, 1);
+																													}
+																													if (world instanceof ServerWorld) {
+																														((ServerWorld) world)
+																																.spawnParticle(
+																																		ParticleTypes.CLOUD,
+																																		x, y, z,
+																																		(int) 1, 3, 3,
+																																		3, 1);
+																													}
+																													if (world instanceof ServerWorld) {
+																														((ServerWorld) world)
+																																.spawnParticle(
+																																		ParticleTypes.CLOUD,
+																																		x, y, z,
+																																		(int) 1, 3, 3,
+																																		3, 1);
+																													}
+																													if (world instanceof ServerWorld) {
+																														((ServerWorld) world)
+																																.spawnParticle(
+																																		ParticleTypes.CLOUD,
+																																		x, y, z,
+																																		(int) 1, 3, 3,
+																																		3, 1);
+																													}
+																													if (world instanceof ServerWorld) {
+																														((ServerWorld) world)
+																																.spawnParticle(
+																																		ParticleTypes.CLOUD,
+																																		x, y, z,
+																																		(int) 1, 3, 3,
+																																		3, 1);
+																													}
+																													if (!world.getWorld().isRemote
+																															&& world.getWorld()
+																																	.getServer() != null) {
+																														world.getWorld().getServer()
+																																.getCommandManager()
+																																.handleCommand(
+																																		new CommandSource(
+																																				ICommandSource.DUMMY,
+																																				new Vec3d(
+																																						x,
+																																						y,
+																																						z),
+																																				Vec2f.ZERO,
+																																				(ServerWorld) world,
+																																				4, "",
+																																				new StringTextComponent(
+																																						""),
+																																				world.getWorld()
+																																						.getServer(),
+																																				null).withFeedbackDisabled(),
+																																		"kill @e[type=newgenstory_fanatic_version:gorbatic_start]");
+																													}
+																													new Object() {
+																														private int ticks = 0;
+																														private float waitTicks;
+																														private IWorld world;
+																														public void start(
+																																IWorld world,
+																																int waitTicks) {
+																															this.waitTicks = waitTicks;
+																															MinecraftForge.EVENT_BUS
+																																	.register(this);
+																															this.world = world;
+																														}
+
+																														@SubscribeEvent
+																														public void tick(
+																																TickEvent.ServerTickEvent event) {
+																															if (event.phase == TickEvent.Phase.END) {
+																																this.ticks += 1;
+																																if (this.ticks >= this.waitTicks)
+																																	run();
+																															}
+																														}
+
+																														private void run() {
+																															{
+																																double _setval = (double) 19;
+																																entity.getCapability(
+																																		NewgenstoryFanaticVersionModVariables.PLAYER_VARIABLES_CAPABILITY,
+																																		null)
+																																		.ifPresent(
+																																				capability -> {
+																																					capability.EnterPlayer = _setval;
+																																					capability
+																																							.syncPlayerVariables(
+																																									entity);
+																																				});
+																															}
+																															MinecraftForge.EVENT_BUS
+																																	.unregister(this);
+																														}
+																													}.start(world, (int) 40000);
 																													MinecraftForge.EVENT_BUS
 																															.unregister(this);
 																												}
-																											}.start(world, (int) 40000);
+																											}.start(world, (int) 200);
 																											MinecraftForge.EVENT_BUS.unregister(this);
 																										}
 																									}.start(world, (int) 200);
