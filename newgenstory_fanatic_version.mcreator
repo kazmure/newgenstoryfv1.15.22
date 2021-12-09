@@ -1519,6 +1519,15 @@
           }
         ]
       }
+    },
+    {
+      "name": "OceanPotion",
+      "type": "potion",
+      "sortid": 86,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "ocean_potion"
     }
   ],
   "variable_elements": [
@@ -1601,7 +1610,9 @@
       "block.newgenstory_fanatic_version.crashed_bedrock": "Crashed Bedrock",
       "itemGroup.tabnew_gen_story": "New Gen Story",
       "subtitles.loran": "",
+      "item.minecraft.tipped_arrow.effect.ocean_potion": "Arrow of Ocean Potion",
       "item.newgenstory_fanatic_version.letter": "Letter",
+      "item.minecraft.splash_potion.effect.ocean_potion": "Splash Potion of Ocean Potion",
       "item.newgenstory_fanatic_version.lidenec": "Lidenec",
       "block.newgenstory_fanatic_version.crashed_bedrock_1": "Crashed Bedrock",
       "entity.newgenstory_fanatic_version.frayer_123": "Frayer 123",
@@ -1626,6 +1637,7 @@
       "entity.newgenstory_fanatic_version.fairy_old_lololoshka": "Fairy",
       "item.newgenstory_fanatic_version.black_medalion": "Black Medalion",
       "item.newgenstory_fanatic_version.frayer_123_spawn_egg": "Frayer 123 Spawn Egg",
+      "item.minecraft.lingering_potion.effect.ocean_potion": "Lingering Potion of Ocean Potion",
       "item.newgenstory_fanatic_version.void_runa": "Void Runa",
       "entity.newgenstory_fanatic_version.fairy_21": "Fairy",
       "block.newgenstory_fanatic_version.loran": "Лоран",
@@ -1651,6 +1663,7 @@
       "item.newgenstory_fanatic_version.fragment_32": "Fragment",
       "item.newgenstory_fanatic_version.loran_21": "Лоран",
       "item.newgenstory_fanatic_version.zeit_leggings": "Zeit Leggings",
+      "item.minecraft.potion.effect.ocean_potion": "Potion of Ocean Potion",
       "block.newgenstory_fanatic_version.abyssal_obsidian": "Пустотный обсидиан",
       "item.newgenstory_fanatic_version.fairy_21_spawn_egg": "Fairy Spawn Egg",
       "entity.newgenstory_fanatic_version.reiterion_21": "Рейтерион",
