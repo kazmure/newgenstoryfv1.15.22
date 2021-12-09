@@ -106,8 +106,8 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 			this.y = container.y;
 			this.z = container.z;
 			this.entity = container.entity;
-			this.xSize = 429;
-			this.ySize = 241;
+			this.xSize = 465;
+			this.ySize = 301;
 		}
 
 		@Override
@@ -124,7 +124,7 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 			RenderSystem.defaultBlendFunc();
 			Minecraft.getInstance().getTextureManager()
 					.bindTexture(new ResourceLocation("newgenstory_fanatic_version:textures/biez_imieni333333333-1.png"));
-			this.blit(this.guiLeft + 1, this.guiTop + -1, 0, 0, 429, 241, 429, 241);
+			this.blit(this.guiLeft + 19, this.guiTop + 28, 0, 0, 429, 241, 429, 241);
 			RenderSystem.disableBlend();
 		}
 

@@ -3,8 +3,8 @@
   "_type": "gui",
   "definition": {
     "type": 0,
-    "width": 429,
-    "height": 241,
+    "width": 465,
+    "height": 301,
     "inventoryOffsetX": 0,
     "inventoryOffsetY": 0,
     "renderBgLayer": false,
