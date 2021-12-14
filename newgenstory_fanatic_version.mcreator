@@ -1561,6 +1561,15 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "vaavay"
+    },
+    {
+      "name": "OceanPotion",
+      "type": "potion",
+      "sortid": 86,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "ocean_potion"
     }
   ],
   "variable_elements": [
@@ -1635,8 +1644,8 @@
       "item.newgenstory_fanatic_version.the_lomgds_spawn_egg": "TheLomgds Spawn Egg",
       "item.newgenstory_fanatic_version.fairy_lololoshka_21_spawn_egg": "Fairy Spawn Egg",
       "item.newgenstory_fanatic_version.fragment_3": "Fragment",
-      "subtitles.vinks": "",
       "item.newgenstory_fanatic_version.runa_ganon": "Runa Ganon",
+      "subtitles.vinks": "",
       "entity.newgenstory_fanatic_version.fairy": "Fairy",
       "item.newgenstory_fanatic_version.zeit_boots": "Zeit Boots",
       "item.newgenstory_fanatic_version.abysal_gem": "Abysal Gem",
@@ -1657,7 +1666,6 @@
       "entity.newgenstory_fanatic_version.leftarion_start": "Лефтерион",
       "item.newgenstory_fanatic_version.magic_map": "Magic Map",
       "item.newgenstory_fanatic_version.leftarion_spawn_egg": "Лефтерион Spawn Egg",
-      "key.newgenstory_fanatic_version.vaavay": "Vaavay",
       "item.newgenstory_fanatic_version.magic_fire": "Magic Fire",
       "item.newgenstory_fanatic_version.improved_hazmat_helmet": "Improved Hazmat Helmet",
       "item.newgenstory_fanatic_version.gorbatic_start_spawn_egg": "Горбатик Spawn Egg",
