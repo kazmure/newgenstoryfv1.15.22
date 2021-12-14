@@ -1519,6 +1519,48 @@
           }
         ]
       }
+    },
+    {
+      "name": "VaavayOnKeyPressed",
+      "type": "procedure",
+      "sortid": 86,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vaavay_on_key_pressed",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vaavay",
+      "type": "keybind",
+      "sortid": 86,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vaavay"
     }
   ],
   "variable_elements": [
@@ -1615,6 +1657,7 @@
       "entity.newgenstory_fanatic_version.leftarion_start": "Лефтерион",
       "item.newgenstory_fanatic_version.magic_map": "Magic Map",
       "item.newgenstory_fanatic_version.leftarion_spawn_egg": "Лефтерион Spawn Egg",
+      "key.newgenstory_fanatic_version.vaavay": "Vaavay",
       "item.newgenstory_fanatic_version.magic_fire": "Magic Fire",
       "item.newgenstory_fanatic_version.improved_hazmat_helmet": "Improved Hazmat Helmet",
       "item.newgenstory_fanatic_version.gorbatic_start_spawn_egg": "Горбатик Spawn Egg",

@@ -1,0 +1,15 @@
+{
+  "_fv": 24,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "G",
+    "keyBindingName": "Vaavay",
+    "keyBindingCategoryKey": "misc",
+    "onKeyPressed": {
+      "name": "VaavayOnKeyPressed"
+    },
+    "onKeyReleased": {
+      "name": "VaavayOnKeyPressed"
+    }
+  }
+}

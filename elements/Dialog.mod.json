@@ -16,8 +16,19 @@
           "image": "biez_imieni333333333-1.png",
           "use1Xscale": false,
           "name": "biez_imieni333333333-1.png",
-          "x": 0,
-          "y": -2
+          "x": 10,
+          "y": 5
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "sdsdsddsads",
+          "width": 80,
+          "height": 20,
+          "name": "sdsdsddsads",
+          "x": 92,
+          "y": 146
         }
       }
     ],
