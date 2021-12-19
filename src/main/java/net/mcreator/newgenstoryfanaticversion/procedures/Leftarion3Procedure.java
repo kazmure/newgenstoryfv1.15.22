@@ -26,11 +26,13 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionMod;
 
 import java.util.Map;
+import java.util.HashMap;
 
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.ModElement {
 	public Leftarion3Procedure(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 85);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -171,6 +173,25 @@ public class Leftarion3Procedure extends NewgenstoryFanaticVersionModElements.Mo
 					capability.syncPlayerVariables(entity);
 				});
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		if (event.phase == TickEvent.Phase.END) {
+			Entity entity = event.player;
+			World world = entity.world;
+			double i = entity.getPosX();
+			double j = entity.getPosY();
+			double k = entity.getPosZ();
+			Map<String, Object> dependencies = new HashMap<>();
+			dependencies.put("x", i);
+			dependencies.put("y", j);
+			dependencies.put("z", k);
+			dependencies.put("world", world);
+			dependencies.put("entity", entity);
+			dependencies.put("event", event);
+			this.executeProcedure(dependencies);
 		}
 	}
 }
