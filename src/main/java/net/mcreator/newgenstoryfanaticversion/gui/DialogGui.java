@@ -22,11 +22,13 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
+import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionMod;
 
 import java.util.function.Supplier;
 import java.util.Map;
@@ -106,8 +108,8 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 			this.y = container.y;
 			this.z = container.z;
 			this.entity = container.entity;
-			this.xSize = 465;
-			this.ySize = 301;
+			this.xSize = 512;
+			this.ySize = 512;
 		}
 
 		@Override
@@ -124,7 +126,7 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 			RenderSystem.defaultBlendFunc();
 			Minecraft.getInstance().getTextureManager()
 					.bindTexture(new ResourceLocation("newgenstory_fanatic_version:textures/biez_imieni333333333-1.png"));
-			this.blit(this.guiLeft + 19, this.guiTop + 28, 0, 0, 429, 241, 429, 241);
+			this.blit(this.guiLeft + 41, this.guiTop + 135, 0, 0, 429, 241, 429, 241);
 			RenderSystem.disableBlend();
 		}
 
@@ -156,6 +158,12 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 		public void init(Minecraft minecraft, int width, int height) {
 			super.init(minecraft, width, height);
 			minecraft.keyboardListener.enableRepeatEvents(true);
+			this.addButton(new Button(this.guiLeft + 59, this.guiTop + 283, 30, 20, ">", e -> {
+				if (true) {
+					NewgenstoryFanaticVersionMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(0, x, y, z));
+					handleButtonAction(entity, 0, x, y, z);
+				}
+			}));
 		}
 	}
 

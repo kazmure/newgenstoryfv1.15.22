@@ -3,8 +3,8 @@
   "_type": "gui",
   "definition": {
     "type": 0,
-    "width": 465,
-    "height": 301,
+    "width": 512,
+    "height": 512,
     "inventoryOffsetX": 0,
     "inventoryOffsetY": 0,
     "renderBgLayer": false,
@@ -16,8 +16,19 @@
           "image": "biez_imieni333333333-1.png",
           "use1Xscale": false,
           "name": "biez_imieni333333333-1.png",
-          "x": 0,
-          "y": -2
+          "x": -1,
+          "y": -1
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": ">",
+          "width": 30,
+          "height": 20,
+          "name": ">",
+          "x": 17,
+          "y": 147
         }
       }
     ],
