@@ -1,5 +1,4 @@
 {
-  "id_map": {},
   "mod_elements": [
     {
       "name": "GorbaticStart",
@@ -7,7 +6,6 @@
       "sortid": 1,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "gorbatic_start"
     },
     {
@@ -16,7 +14,6 @@
       "sortid": 2,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "leftarion"
     },
     {
@@ -25,7 +22,6 @@
       "sortid": 3,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "start",
       "metadata": {
         "dependencies": [
@@ -58,7 +54,6 @@
       "sortid": 4,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "nether_portal",
       "metadata": {
         "dependencies": [
@@ -91,7 +86,6 @@
       "sortid": 5,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "start_1"
     },
     {
@@ -100,7 +94,6 @@
       "sortid": 6,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "gorbatic",
       "metadata": {
         "dependencies": [
@@ -133,7 +126,6 @@
       "sortid": 7,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "leftarion_21",
       "metadata": {
         "dependencies": [
@@ -166,7 +158,6 @@
       "sortid": 8,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "abyssal_ingot"
     },
     {
@@ -175,7 +166,6 @@
       "sortid": 9,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "abysal_gem"
     },
     {
@@ -184,7 +174,6 @@
       "sortid": 10,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "abyssal_obsidian"
     },
     {
@@ -193,7 +182,6 @@
       "sortid": 11,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "loran"
     },
     {
@@ -202,7 +190,6 @@
       "sortid": 12,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "magic_tnt"
     },
     {
@@ -211,7 +198,6 @@
       "sortid": 13,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "loran_21"
     },
     {
@@ -220,7 +206,6 @@
       "sortid": 14,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "mt_craft"
     },
     {
@@ -229,7 +214,6 @@
       "sortid": 15,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "ag_craft"
     },
     {
@@ -238,7 +222,6 @@
       "sortid": 16,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "ai_craft"
     },
     {
@@ -247,7 +230,6 @@
       "sortid": 17,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "crashed_abyssal_obsidian"
     },
     {
@@ -256,7 +238,6 @@
       "sortid": 18,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "cao_craft"
     },
     {
@@ -265,7 +246,6 @@
       "sortid": 19,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "unlock_recipe",
       "metadata": {
         "dependencies": [
@@ -282,7 +262,6 @@
       "sortid": 20,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "paper_21"
     },
     {
@@ -291,7 +270,6 @@
       "sortid": 21,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "paper_21_right_clicked_in_air",
       "metadata": {
         "dependencies": [
@@ -308,7 +286,6 @@
       "sortid": 22,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "paper_21_right_clicked_on_block",
       "metadata": {
         "dependencies": [
@@ -325,7 +302,6 @@
       "sortid": 23,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "loran_procedure",
       "metadata": {
         "dependencies": [
@@ -358,7 +334,6 @@
       "sortid": 24,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "leftarion_start"
     },
     {
@@ -367,7 +342,6 @@
       "sortid": 25,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "start_procedure",
       "metadata": {
         "dependencies": [
@@ -396,7 +370,6 @@
       "sortid": 26,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_1_command_executed",
       "metadata": {
         "dependencies": [
@@ -429,7 +402,6 @@
       "sortid": 26,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_1"
     },
     {
@@ -438,7 +410,6 @@
       "sortid": 27,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_2_command_executed",
       "metadata": {
         "dependencies": [
@@ -471,7 +442,6 @@
       "sortid": 27,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_2"
     },
     {
@@ -480,7 +450,6 @@
       "sortid": 28,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_3_command_executed",
       "metadata": {
         "dependencies": [
@@ -513,7 +482,6 @@
       "sortid": 28,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_3"
     },
     {
@@ -522,7 +490,6 @@
       "sortid": 29,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "reterion"
     },
     {
@@ -531,7 +498,6 @@
       "sortid": 30,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "reterion_21",
       "metadata": {
         "dependencies": [
@@ -564,7 +530,6 @@
       "sortid": 31,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "kazmur"
     },
     {
@@ -573,7 +538,6 @@
       "sortid": 32,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "frayer_123"
     },
     {
@@ -582,7 +546,6 @@
       "sortid": 33,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "crashed_bedrock"
     },
     {
@@ -591,7 +554,6 @@
       "sortid": 33,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "magic_tnt_on_block_right_clicked",
       "metadata": {
         "dependencies": [
@@ -624,7 +586,6 @@
       "sortid": 34,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "crashed_bedrock_entity_walks_on_the_block",
       "metadata": {
         "dependencies": [
@@ -641,7 +602,6 @@
       "sortid": 35,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "crashed_bedrock_1"
     },
     {
@@ -650,7 +610,6 @@
       "sortid": 36,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "crashed_bedrock_1_entity_walks_on_the_block",
       "metadata": {
         "dependencies": [
@@ -683,7 +642,6 @@
       "sortid": 37,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "glow_procedure",
       "metadata": {
         "dependencies": [
@@ -716,7 +674,6 @@
       "sortid": 38,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "paper_32"
     },
     {
@@ -725,7 +682,6 @@
       "sortid": 39,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "reiterion_21"
     },
     {
@@ -734,7 +690,6 @@
       "sortid": 40,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "reiterion_21_right_clicked_on_entity",
       "metadata": {
         "dependencies": [
@@ -767,7 +722,6 @@
       "sortid": 41,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fairy"
     },
     {
@@ -776,7 +730,6 @@
       "sortid": 41,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "gorbatic_1",
       "metadata": {
         "dependencies": [
@@ -809,7 +762,6 @@
       "sortid": 42,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "bedrock"
     },
     {
@@ -818,7 +770,6 @@
       "sortid": 43,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "leftarion_1",
       "metadata": {
         "dependencies": [
@@ -851,7 +802,6 @@
       "sortid": 44,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "leftarion_start_right_clicked_on_entity",
       "metadata": {
         "dependencies": [
@@ -884,7 +834,6 @@
       "sortid": 45,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "leftarion_2",
       "metadata": {
         "dependencies": [
@@ -917,7 +866,6 @@
       "sortid": 46,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_4_command_executed",
       "metadata": {
         "dependencies": [
@@ -950,7 +898,6 @@
       "sortid": 46,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_4"
     },
     {
@@ -959,7 +906,6 @@
       "sortid": 47,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_5_command_executed",
       "metadata": {
         "dependencies": [
@@ -992,7 +938,6 @@
       "sortid": 47,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_5"
     },
     {
@@ -1001,7 +946,6 @@
       "sortid": 48,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_7_command_executed",
       "metadata": {
         "dependencies": [
@@ -1034,7 +978,6 @@
       "sortid": 48,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "repeat_7"
     },
     {
@@ -1043,7 +986,6 @@
       "sortid": 49,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fairy_right_clicked_on_entity",
       "metadata": {
         "dependencies": [
@@ -1080,7 +1022,6 @@
       "sortid": 50,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fairy_21"
     },
     {
@@ -1089,7 +1030,6 @@
       "sortid": 51,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fairy_old_lololoshka"
     },
     {
@@ -1098,7 +1038,6 @@
       "sortid": 52,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fairy_lololoshka_21"
     },
     {
@@ -1107,7 +1046,6 @@
       "sortid": 53,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "resetesteregg_command_executed",
       "metadata": {
         "dependencies": [
@@ -1124,7 +1062,6 @@
       "sortid": 53,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "resetesteregg"
     },
     {
@@ -1133,7 +1070,6 @@
       "sortid": 54,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fairy_new_lololoshka"
     },
     {
@@ -1142,7 +1078,6 @@
       "sortid": 55,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "dril_block_destroyed_with_tool",
       "metadata": {
         "dependencies": [
@@ -1175,7 +1110,6 @@
       "sortid": 55,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "dril"
     },
     {
@@ -1184,7 +1118,6 @@
       "sortid": 56,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "new_gen_story"
     },
     {
@@ -1193,7 +1126,6 @@
       "sortid": 57,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "zeit",
       "metadata": {
         "eh": true,
@@ -1208,7 +1140,6 @@
       "sortid": 58,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "tea"
     },
     {
@@ -1217,7 +1148,6 @@
       "sortid": 59,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "tea_grip"
     },
     {
@@ -1226,7 +1156,6 @@
       "sortid": 60,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "awakened_runik_sword"
     },
     {
@@ -1235,7 +1164,6 @@
       "sortid": 61,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "runa_ganon"
     },
     {
@@ -1244,7 +1172,6 @@
       "sortid": 62,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "medalion"
     },
     {
@@ -1253,7 +1180,6 @@
       "sortid": 63,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "void_runa"
     },
     {
@@ -1262,7 +1188,6 @@
       "sortid": 64,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "ring_fly"
     },
     {
@@ -1271,7 +1196,6 @@
       "sortid": 65,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "magic_fire"
     },
     {
@@ -1280,7 +1204,6 @@
       "sortid": 66,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "magic_fire_1"
     },
     {
@@ -1289,7 +1212,6 @@
       "sortid": 67,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "dogovor"
     },
     {
@@ -1298,7 +1220,6 @@
       "sortid": 68,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "clean_watter"
     },
     {
@@ -1307,7 +1228,6 @@
       "sortid": 69,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "letter"
     },
     {
@@ -1316,7 +1236,6 @@
       "sortid": 70,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "magic_map"
     },
     {
@@ -1325,7 +1244,6 @@
       "sortid": 71,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "black_medalion"
     },
     {
@@ -1334,7 +1252,6 @@
       "sortid": 72,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "volos_sirana"
     },
     {
@@ -1343,7 +1260,6 @@
       "sortid": 73,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "ocean_poation"
     },
     {
@@ -1352,7 +1268,6 @@
       "sortid": 74,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "lidenec"
     },
     {
@@ -1361,7 +1276,6 @@
       "sortid": 75,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "sfera"
     },
     {
@@ -1370,7 +1284,6 @@
       "sortid": 76,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fragment_3"
     },
     {
@@ -1379,7 +1292,6 @@
       "sortid": 77,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fragment_31"
     },
     {
@@ -1388,7 +1300,6 @@
       "sortid": 78,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fragment_32"
     },
     {
@@ -1397,7 +1308,6 @@
       "sortid": 79,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "improved_hazmat",
       "metadata": {
         "eh": true,
@@ -1412,7 +1322,6 @@
       "sortid": 80,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "fragment_31_item_in_inventory_tick",
       "metadata": {
         "dependencies": []
@@ -1424,7 +1333,6 @@
       "sortid": 81,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "the_lomgds"
     },
     {
@@ -1433,7 +1341,6 @@
       "sortid": 82,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "drill"
     },
     {
@@ -1442,7 +1349,6 @@
       "sortid": 83,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "gorbatic_2",
       "metadata": {
         "dependencies": [
@@ -1475,7 +1381,6 @@
       "sortid": 84,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "dialog"
     },
     {
@@ -1484,7 +1389,6 @@
       "sortid": 85,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "ring_beskonechnosti"
     },
     {
@@ -1493,7 +1397,6 @@
       "sortid": 85,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "leftarion_3",
       "metadata": {
         "dependencies": [
@@ -1521,64 +1424,20 @@
       }
     },
     {
-      "name": "VaavayOnKeyPressed",
-      "type": "procedure",
-      "sortid": 86,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "vaavay_on_key_pressed",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Vaavay",
-      "type": "keybind",
-      "sortid": 86,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "vaavay"
-    },
-    {
-      "name": "OceanPotion",
-      "type": "potion",
-      "sortid": 86,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "ocean_potion"
-    },
-    {
       "name": "VillagerN",
       "type": "livingentity",
       "sortid": 87,
       "compiles": true,
       "locked_code": false,
-      "ids": {},
       "registry_name": "villager_n"
+    },
+    {
+      "name": "ScipeterLucios",
+      "type": "rangeditem",
+      "sortid": 89,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "scipeter_lucios"
     }
   ],
   "variable_elements": [
@@ -1724,6 +1583,7 @@
       "entity.newgenstory_fanatic_version.leftarion": "Лефтерион",
       "item.newgenstory_fanatic_version.volos_sirana": "Volos Sirana",
       "item.newgenstory_fanatic_version.reiterion_21_spawn_egg": "Рейтерион Spawn Egg",
+      "item.newgenstory_fanatic_version.scipeter_lucios": "Scipeter Lucios",
       "item.newgenstory_fanatic_version.reterion_spawn_egg": "Рейтерион Spawn Egg",
       "item.newgenstory_fanatic_version.fairy_old_lololoshka_spawn_egg": "Fairy Spawn Egg"
     }
@@ -1745,10 +1605,10 @@
     "dependencies": [],
     "dependants": [],
     "mcreatorDependencies": [],
-    "currentGenerator": "forge-1.15.2",
+    "currentGenerator": "forge-1.16.5",
     "credits": "Created using mod maker MCreator - https://mcreator.net/about",
     "modElementsPackage": "net.mcreator.newgenstoryfanaticversion",
     "lockBaseModFiles": false
   },
-  "mcreatorVersion": 202100236710
+  "mcreatorVersion": 202100353117
 }

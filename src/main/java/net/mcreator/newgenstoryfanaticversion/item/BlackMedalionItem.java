@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class BlackMedalionItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:black_medalion")
 	public static final Item block = null;
+
 	public BlackMedalionItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 71);
 	}
@@ -23,6 +24,7 @@ public class BlackMedalionItem extends NewgenstoryFanaticVersionModElements.ModE
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(1).rarity(Rarity.EPIC));

@@ -13,33 +13,26 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.world.World;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.Minecraft;
 
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
-import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionMod;
 
 import java.util.function.Supplier;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 	public static HashMap guistate = new HashMap();
 	private static ContainerType<GuiContainerMod> containerType = null;
+
 	public DialogGui(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 84);
 		elements.addNetworkMessage(ButtonPressedMessage.class, ButtonPressedMessage::buffer, ButtonPressedMessage::new,
@@ -47,18 +40,21 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 		elements.addNetworkMessage(GUISlotChangedMessage.class, GUISlotChangedMessage::buffer, GUISlotChangedMessage::new,
 				GUISlotChangedMessage::handler);
 		containerType = new ContainerType<>(new GuiContainerModFactory());
-		FMLJavaModLoadingContext.get().getModEventBus().register(this);
+		FMLJavaModLoadingContext.get().getModEventBus().register(new ContainerRegisterHandler());
+	}
+
+	private static class ContainerRegisterHandler {
+		@SubscribeEvent
+		public void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
+			event.getRegistry().register(containerType.setRegistryName("dialog"));
+		}
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public void initElements() {
-		DeferredWorkQueue.runLater(() -> ScreenManager.registerFactory(containerType, GuiWindow::new));
+		DeferredWorkQueue.runLater(() -> ScreenManager.registerFactory(containerType, DialogGuiWindow::new));
 	}
 
-	@SubscribeEvent
-	public void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
-		event.getRegistry().register(containerType.setRegistryName("dialog"));
-	}
 	public static class GuiContainerModFactory implements IContainerFactory {
 		public GuiContainerMod create(int id, PlayerInventory inv, PacketBuffer extraData) {
 			return new GuiContainerMod(id, inv, extraData);
@@ -66,12 +62,13 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 	}
 
 	public static class GuiContainerMod extends Container implements Supplier<Map<Integer, Slot>> {
-		private World world;
-		private PlayerEntity entity;
-		private int x, y, z;
+		World world;
+		PlayerEntity entity;
+		int x, y, z;
 		private IItemHandler internal;
 		private Map<Integer, Slot> customSlots = new HashMap<>();
 		private boolean bound = false;
+
 		public GuiContainerMod(int id, PlayerInventory inv, PacketBuffer extraData) {
 			super(containerType, id);
 			this.entity = inv.player;
@@ -96,79 +93,9 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	public static class GuiWindow extends ContainerScreen<GuiContainerMod> {
-		private World world;
-		private int x, y, z;
-		private PlayerEntity entity;
-		public GuiWindow(GuiContainerMod container, PlayerInventory inventory, ITextComponent text) {
-			super(container, inventory, text);
-			this.world = container.world;
-			this.x = container.x;
-			this.y = container.y;
-			this.z = container.z;
-			this.entity = container.entity;
-			this.xSize = 512;
-			this.ySize = 512;
-		}
-
-		@Override
-		public void render(int mouseX, int mouseY, float partialTicks) {
-			this.renderBackground();
-			super.render(mouseX, mouseY, partialTicks);
-			this.renderHoveredToolTip(mouseX, mouseY);
-		}
-
-		@Override
-		protected void drawGuiContainerBackgroundLayer(float partialTicks, int gx, int gy) {
-			RenderSystem.color4f(1, 1, 1, 1);
-			RenderSystem.enableBlend();
-			RenderSystem.defaultBlendFunc();
-			Minecraft.getInstance().getTextureManager()
-					.bindTexture(new ResourceLocation("newgenstory_fanatic_version:textures/biez_imieni333333333-1.png"));
-			this.blit(this.guiLeft + 41, this.guiTop + 135, 0, 0, 429, 241, 429, 241);
-			RenderSystem.disableBlend();
-		}
-
-		@Override
-		public boolean keyPressed(int key, int b, int c) {
-			if (key == 256) {
-				this.minecraft.player.closeScreen();
-				return true;
-			}
-			return super.keyPressed(key, b, c);
-		}
-
-		@Override
-		public void tick() {
-			super.tick();
-		}
-
-		@Override
-		protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		}
-
-		@Override
-		public void removed() {
-			super.removed();
-			Minecraft.getInstance().keyboardListener.enableRepeatEvents(false);
-		}
-
-		@Override
-		public void init(Minecraft minecraft, int width, int height) {
-			super.init(minecraft, width, height);
-			minecraft.keyboardListener.enableRepeatEvents(true);
-			this.addButton(new Button(this.guiLeft + 59, this.guiTop + 283, 30, 20, ">", e -> {
-				if (true) {
-					NewgenstoryFanaticVersionMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(0, x, y, z));
-					handleButtonAction(entity, 0, x, y, z);
-				}
-			}));
-		}
-	}
-
 	public static class ButtonPressedMessage {
 		int buttonID, x, y, z;
+
 		public ButtonPressedMessage(PacketBuffer buffer) {
 			this.buttonID = buffer.readInt();
 			this.x = buffer.readInt();
@@ -206,6 +133,7 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 
 	public static class GUISlotChangedMessage {
 		int slotID, x, y, z, changeType, meta;
+
 		public GUISlotChangedMessage(int slotID, int x, int y, int z, int changeType, int meta) {
 			this.slotID = slotID;
 			this.x = x;
@@ -248,7 +176,8 @@ public class DialogGui extends NewgenstoryFanaticVersionModElements.ModElement {
 			context.setPacketHandled(true);
 		}
 	}
-	private static void handleButtonAction(PlayerEntity entity, int buttonID, int x, int y, int z) {
+
+	static void handleButtonAction(PlayerEntity entity, int buttonID, int x, int y, int z) {
 		World world = entity.world;
 		// security measure to prevent arbitrary chunk generation
 		if (!world.isBlockLoaded(new BlockPos(x, y, z)))

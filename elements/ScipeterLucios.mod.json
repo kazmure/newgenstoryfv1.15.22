@@ -1,0 +1,37 @@
+{
+  "_fv": 24,
+  "_type": "rangeditem",
+  "definition": {
+    "renderType": 1,
+    "texture": "liutsius",
+    "customModelName": "model:default",
+    "name": "Scipeter Lucios",
+    "specialInfo": [],
+    "creativeTab": {
+      "value": "CUSTOM:NewGenStory"
+    },
+    "stackSize": 1,
+    "ammoItem": {
+      "value": "Items.FIRE_CHARGE"
+    },
+    "shootConstantly": false,
+    "usageCount": 100,
+    "actionSound": {
+      "value": "entity.arrow.shoot"
+    },
+    "hasGlow": false,
+    "animation": "crossbow",
+    "enableMeleeDamage": false,
+    "damageVsEntity": 0.0,
+    "bulletPower": 5.0,
+    "bulletDamage": 10.0,
+    "bulletKnockback": 5,
+    "bulletParticles": false,
+    "bulletIgnitesFire": false,
+    "bulletItemTexture": {
+      "value": "Items.FIRE_CHARGE"
+    },
+    "bulletModel": "Default",
+    "customBulletModelTexture": ""
+  }
+}

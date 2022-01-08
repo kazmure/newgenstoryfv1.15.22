@@ -1,7 +1,9 @@
 
 package net.mcreator.newgenstoryfanaticversion.command;
 
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.common.util.FakePlayerFactory;
 
 import net.minecraft.world.server.ServerWorld;
@@ -10,33 +12,28 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.CommandSource;
 
 import net.mcreator.newgenstoryfanaticversion.procedures.ResetestereggCommandExecutedProcedure;
-import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 
+import java.util.stream.Stream;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Arrays;
+import java.util.AbstractMap;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
-@NewgenstoryFanaticVersionModElements.ModElement.Tag
-public class ResetestereggCommand extends NewgenstoryFanaticVersionModElements.ModElement {
-	public ResetestereggCommand(NewgenstoryFanaticVersionModElements instance) {
-		super(instance, 53);
+@Mod.EventBusSubscriber
+public class ResetestereggCommand {
+	@SubscribeEvent
+	public static void registerCommands(RegisterCommandsEvent event) {
+		event.getDispatcher().register(LiteralArgumentBuilder.<CommandSource>literal("resetesteregg")
+
+				.then(Commands.argument("arguments", StringArgumentType.greedyString()).executes(ResetestereggCommand::execute))
+				.executes(ResetestereggCommand::execute));
 	}
 
-	@Override
-	public void serverLoad(FMLServerStartingEvent event) {
-		event.getCommandDispatcher().register(customCommand());
-	}
-
-	private LiteralArgumentBuilder<CommandSource> customCommand() {
-		return LiteralArgumentBuilder.<CommandSource>literal("resetesteregg")
-				.then(Commands.argument("arguments", StringArgumentType.greedyString()).executes(this::execute)).executes(this::execute);
-	}
-
-	private int execute(CommandContext<CommandSource> ctx) {
+	private static int execute(CommandContext<CommandSource> ctx) {
 		ServerWorld world = ctx.getSource().getWorld();
 		double x = ctx.getSource().getPos().getX();
 		double y = ctx.getSource().getPos().getY();
@@ -51,11 +48,9 @@ public class ResetestereggCommand extends NewgenstoryFanaticVersionModElements.M
 				cmdparams.put(Integer.toString(index[0]), param);
 			index[0]++;
 		});
-		{
-			Map<String, Object> $_dependencies = new HashMap<>();
-			$_dependencies.put("entity", entity);
-			ResetestereggCommandExecutedProcedure.executeProcedure($_dependencies);
-		}
+
+		ResetestereggCommandExecutedProcedure.executeProcedure(Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
+				(_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
 		return 0;
 	}
 }

@@ -24,14 +24,17 @@ import net.mcreator.newgenstoryfanaticversion.procedures.Paper21RightClickedOnBl
 import net.mcreator.newgenstoryfanaticversion.procedures.Paper21RightClickedInAirProcedure;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 
+import java.util.stream.Stream;
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
+import java.util.AbstractMap;
 
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class Paper21Item extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:paper_21")
 	public static final Item block = null;
+
 	public Paper21Item(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 20);
 	}
@@ -40,6 +43,7 @@ public class Paper21Item extends NewgenstoryFanaticVersionModElements.ModElement
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(ItemGroup.MISC).maxStackSize(64).rarity(Rarity.COMMON));
@@ -77,11 +81,9 @@ public class Paper21Item extends NewgenstoryFanaticVersionModElements.ModElement
 			double x = entity.getPosX();
 			double y = entity.getPosY();
 			double z = entity.getPosZ();
-			{
-				Map<String, Object> $_dependencies = new HashMap<>();
-				$_dependencies.put("entity", entity);
-				Paper21RightClickedInAirProcedure.executeProcedure($_dependencies);
-			}
+
+			Paper21RightClickedInAirProcedure.executeProcedure(Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
+					(_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
 			return ar;
 		}
 
@@ -97,11 +99,9 @@ public class Paper21Item extends NewgenstoryFanaticVersionModElements.ModElement
 			int y = pos.getY();
 			int z = pos.getZ();
 			ItemStack itemstack = context.getItem();
-			{
-				Map<String, Object> $_dependencies = new HashMap<>();
-				$_dependencies.put("entity", entity);
-				Paper21RightClickedOnBlockProcedure.executeProcedure($_dependencies);
-			}
+
+			Paper21RightClickedOnBlockProcedure.executeProcedure(Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
+					(_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
 			return retval;
 		}
 	}

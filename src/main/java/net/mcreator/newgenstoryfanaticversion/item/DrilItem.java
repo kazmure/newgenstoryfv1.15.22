@@ -17,13 +17,16 @@ import net.mcreator.newgenstoryfanaticversion.procedures.DrilBlockDestroyedWithT
 import net.mcreator.newgenstoryfanaticversion.itemgroup.NewGenStoryItemGroup;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 
+import java.util.stream.Stream;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.AbstractMap;
 
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class DrilItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:dril")
 	public static final Item block = null;
+
 	public DrilItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 55);
 	}
@@ -61,15 +64,12 @@ public class DrilItem extends NewgenstoryFanaticVersionModElements.ModElement {
 				int x = pos.getX();
 				int y = pos.getY();
 				int z = pos.getZ();
-				{
-					Map<String, Object> $_dependencies = new HashMap<>();
-					$_dependencies.put("entity", entity);
-					$_dependencies.put("x", x);
-					$_dependencies.put("y", y);
-					$_dependencies.put("z", z);
-					$_dependencies.put("world", world);
-					DrilBlockDestroyedWithToolProcedure.executeProcedure($_dependencies);
-				}
+
+				DrilBlockDestroyedWithToolProcedure.executeProcedure(Stream
+						.of(new AbstractMap.SimpleEntry<>("world", world), new AbstractMap.SimpleEntry<>("x", x),
+								new AbstractMap.SimpleEntry<>("y", y), new AbstractMap.SimpleEntry<>("z", z),
+								new AbstractMap.SimpleEntry<>("entity", entity))
+						.collect(HashMap::new, (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
 				return retval;
 			}
 		}.setRegistryName("dril"));

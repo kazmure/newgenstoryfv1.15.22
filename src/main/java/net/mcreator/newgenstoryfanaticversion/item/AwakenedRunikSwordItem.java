@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class AwakenedRunikSwordItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:awakened_runik_sword")
 	public static final Item block = null;
+
 	public AwakenedRunikSwordItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 60);
 	}

@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class RunaGanonItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:runa_ganon")
 	public static final Item block = null;
+
 	public RunaGanonItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 61);
 	}
@@ -23,6 +24,7 @@ public class RunaGanonItem extends NewgenstoryFanaticVersionModElements.ModEleme
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(64).rarity(Rarity.COMMON));

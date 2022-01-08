@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class OceanPoationItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:ocean_poation")
 	public static final Item block = null;
+
 	public OceanPoationItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 73);
 	}
@@ -23,6 +24,7 @@ public class OceanPoationItem extends NewgenstoryFanaticVersionModElements.ModEl
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(64).rarity(Rarity.EPIC));

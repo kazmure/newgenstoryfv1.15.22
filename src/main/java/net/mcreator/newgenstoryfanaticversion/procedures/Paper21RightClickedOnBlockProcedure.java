@@ -7,16 +7,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.Entity;
 
 import net.mcreator.newgenstoryfanaticversion.item.Paper21Item;
-import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionMod;
 
 import java.util.Map;
 
-@NewgenstoryFanaticVersionModElements.ModElement.Tag
-public class Paper21RightClickedOnBlockProcedure extends NewgenstoryFanaticVersionModElements.ModElement {
-	public Paper21RightClickedOnBlockProcedure(NewgenstoryFanaticVersionModElements instance) {
-		super(instance, 22);
-	}
+public class Paper21RightClickedOnBlockProcedure {
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
@@ -30,7 +25,8 @@ public class Paper21RightClickedOnBlockProcedure extends NewgenstoryFanaticVersi
 		}
 		if (entity instanceof PlayerEntity) {
 			ItemStack _stktoremove = new ItemStack(Paper21Item.block);
-			((PlayerEntity) entity).inventory.clearMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) 1);
+			((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) 1,
+					((PlayerEntity) entity).container.func_234641_j_());
 		}
 	}
 }

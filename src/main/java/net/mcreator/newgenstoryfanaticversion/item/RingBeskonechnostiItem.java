@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class RingBeskonechnostiItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:ring_beskonechnosti")
 	public static final Item block = null;
+
 	public RingBeskonechnostiItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 85);
 	}
@@ -23,6 +24,7 @@ public class RingBeskonechnostiItem extends NewgenstoryFanaticVersionModElements
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(64).rarity(Rarity.COMMON));

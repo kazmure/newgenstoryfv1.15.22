@@ -14,13 +14,13 @@ import net.mcreator.newgenstoryfanaticversion.procedures.Fragment31ItemInInvento
 import net.mcreator.newgenstoryfanaticversion.itemgroup.NewGenStoryItemGroup;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Collections;
 
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class Fragment31Item extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:fragment_31")
 	public static final Item block = null;
+
 	public Fragment31Item(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 77);
 	}
@@ -29,6 +29,7 @@ public class Fragment31Item extends NewgenstoryFanaticVersionModElements.ModElem
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(1).rarity(Rarity.EPIC));
@@ -56,10 +57,8 @@ public class Fragment31Item extends NewgenstoryFanaticVersionModElements.ModElem
 			double x = entity.getPosX();
 			double y = entity.getPosY();
 			double z = entity.getPosZ();
-			{
-				Map<String, Object> $_dependencies = new HashMap<>();
-				Fragment31ItemInInventoryTickProcedure.executeProcedure($_dependencies);
-			}
+
+			Fragment31ItemInInventoryTickProcedure.executeProcedure(Collections.EMPTY_MAP);
 		}
 	}
 }

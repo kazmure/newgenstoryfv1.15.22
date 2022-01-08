@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class MedalionItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:medalion")
 	public static final Item block = null;
+
 	public MedalionItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 62);
 	}
@@ -23,6 +24,7 @@ public class MedalionItem extends NewgenstoryFanaticVersionModElements.ModElemen
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(1).rarity(Rarity.EPIC));

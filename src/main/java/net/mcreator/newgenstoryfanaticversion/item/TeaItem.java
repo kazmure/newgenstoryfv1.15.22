@@ -16,6 +16,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class TeaItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:tea")
 	public static final Item block = null;
+
 	public TeaItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 58);
 	}
@@ -24,10 +25,13 @@ public class TeaItem extends NewgenstoryFanaticVersionModElements.ModElement {
 	public void initElements() {
 		elements.items.add(() -> new FoodItemCustom());
 	}
+
 	public static class FoodItemCustom extends Item {
 		public FoodItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(1).rarity(Rarity.COMMON)
-					.food((new Food.Builder()).hunger(4).saturation(0.3f).build()));
+					.food((new Food.Builder()).hunger(4).saturation(0.3f)
+
+							.build()));
 			setRegistryName("tea");
 		}
 

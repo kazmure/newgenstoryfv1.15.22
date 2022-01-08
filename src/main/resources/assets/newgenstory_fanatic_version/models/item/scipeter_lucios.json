@@ -1,0 +1,7 @@
+{
+  "parent": "newgenstory_fanatic_version:custom/model",
+  "textures": {
+    "0": "newgenstory_fanatic_version:blocks/texture",
+    "particle": "newgenstory_fanatic_version:items/liutsius"
+  }
+}

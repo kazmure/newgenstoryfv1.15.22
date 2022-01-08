@@ -4,9 +4,9 @@ package net.mcreator.newgenstoryfanaticversion.block;
 import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.common.ToolType;
 
-import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.loot.LootContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.BlockItem;
@@ -25,6 +25,7 @@ import java.util.Collections;
 public class CrashedAbyssalObsidianBlock extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:crashed_abyssal_obsidian")
 	public static final Block block = null;
+
 	public CrashedAbyssalObsidianBlock(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 17);
 	}
@@ -35,10 +36,11 @@ public class CrashedAbyssalObsidianBlock extends NewgenstoryFanaticVersionModEle
 		elements.items
 				.add(() -> new BlockItem(block, new Item.Properties().group(NewGenStoryItemGroup.tab)).setRegistryName(block.getRegistryName()));
 	}
+
 	public static class CustomBlock extends Block {
 		public CustomBlock() {
-			super(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(50f, 10000f).lightValue(0).harvestLevel(3)
-					.harvestTool(ToolType.PICKAXE));
+			super(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(50f, 10000f).setLightLevel(s -> 0)
+					.harvestLevel(3).harvestTool(ToolType.PICKAXE).setRequiresTool());
 			setRegistryName("crashed_abyssal_obsidian");
 		}
 

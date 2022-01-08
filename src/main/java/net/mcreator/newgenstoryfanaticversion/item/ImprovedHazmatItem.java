@@ -28,6 +28,7 @@ public class ImprovedHazmatItem extends NewgenstoryFanaticVersionModElements.Mod
 	public static final Item legs = null;
 	@ObjectHolder("newgenstory_fanatic_version:improved_hazmat_boots")
 	public static final Item boots = null;
+
 	public ImprovedHazmatItem(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 79);
 	}
@@ -35,32 +36,44 @@ public class ImprovedHazmatItem extends NewgenstoryFanaticVersionModElements.Mod
 	@Override
 	public void initElements() {
 		IArmorMaterial armormaterial = new IArmorMaterial() {
+			@Override
 			public int getDurability(EquipmentSlotType slot) {
 				return new int[]{13, 15, 16, 11}[slot.getIndex()] * 25;
 			}
 
+			@Override
 			public int getDamageReductionAmount(EquipmentSlotType slot) {
 				return new int[]{3, 7, 8, 5}[slot.getIndex()];
 			}
 
+			@Override
 			public int getEnchantability() {
 				return 9;
 			}
 
+			@Override
 			public net.minecraft.util.SoundEvent getSoundEvent() {
 				return (net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
 			}
 
+			@Override
 			public Ingredient getRepairMaterial() {
 				return Ingredient.EMPTY;
 			}
 
 			@OnlyIn(Dist.CLIENT)
+			@Override
 			public String getName() {
 				return "improved_hazmat";
 			}
 
+			@Override
 			public float getToughness() {
+				return 0f;
+			}
+
+			@Override
+			public float getKnockbackResistance() {
 				return 0f;
 			}
 		};
@@ -93,4 +106,5 @@ public class ImprovedHazmatItem extends NewgenstoryFanaticVersionModElements.Mod
 			}
 		}.setRegistryName("improved_hazmat_boots"));
 	}
+
 }

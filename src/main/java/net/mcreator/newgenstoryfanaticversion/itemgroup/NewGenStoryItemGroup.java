@@ -31,5 +31,6 @@ public class NewGenStoryItemGroup extends NewgenstoryFanaticVersionModElements.M
 			}
 		};
 	}
+
 	public static ItemGroup tab;
 }

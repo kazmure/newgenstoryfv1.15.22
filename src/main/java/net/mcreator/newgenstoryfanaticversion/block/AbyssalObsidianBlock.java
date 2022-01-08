@@ -2,23 +2,30 @@
 package net.mcreator.newgenstoryfanaticversion.block;
 
 import net.minecraftforge.registries.ObjectHolder;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.MinecraftForge;
 
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.placement.CountRangeConfig;
+import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.feature.template.IRuleTestType;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.loot.LootContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.BlockItem;
@@ -39,8 +46,11 @@ import java.util.Collections;
 public class AbyssalObsidianBlock extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:abyssal_obsidian")
 	public static final Block block = null;
+
 	public AbyssalObsidianBlock(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 10);
+		MinecraftForge.EVENT_BUS.register(this);
+		FMLJavaModLoadingContext.get().getModEventBus().register(new FeatureRegisterHandler());
 	}
 
 	@Override
@@ -49,10 +59,11 @@ public class AbyssalObsidianBlock extends NewgenstoryFanaticVersionModElements.M
 		elements.items
 				.add(() -> new BlockItem(block, new Item.Properties().group(NewGenStoryItemGroup.tab)).setRegistryName(block.getRegistryName()));
 	}
+
 	public static class CustomBlock extends Block {
 		public CustomBlock() {
-			super(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(50f, 10000f).lightValue(0).harvestLevel(1)
-					.harvestTool(ToolType.PICKAXE));
+			super(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(50f, 10000f).setLightLevel(s -> 0)
+					.harvestLevel(1).harvestTool(ToolType.PICKAXE).setRequiresTool());
 			setRegistryName("abyssal_obsidian");
 		}
 
@@ -69,33 +80,61 @@ public class AbyssalObsidianBlock extends NewgenstoryFanaticVersionModElements.M
 			return Collections.singletonList(new ItemStack(this, 1));
 		}
 	}
-	@Override
-	public void init(FMLCommonSetupEvent event) {
-		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
-			boolean biomeCriteria = false;
-			if (ForgeRegistries.BIOMES.getKey(biome).equals(new ResourceLocation("plains")))
-				biomeCriteria = true;
-			if (!biomeCriteria)
-				continue;
-			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new OreFeature(OreFeatureConfig::deserialize) {
+
+	private static Feature<OreFeatureConfig> feature = null;
+	private static ConfiguredFeature<?, ?> configuredFeature = null;
+	private static IRuleTestType<CustomRuleTest> CUSTOM_MATCH = null;
+
+	private static class CustomRuleTest extends RuleTest {
+		static final CustomRuleTest INSTANCE = new CustomRuleTest();
+		static final com.mojang.serialization.Codec<CustomRuleTest> codec = com.mojang.serialization.Codec.unit(() -> INSTANCE);
+
+		public boolean test(BlockState blockAt, Random random) {
+			boolean blockCriteria = false;
+			if (blockAt.getBlock() == Blocks.BASALT)
+				blockCriteria = true;
+			if (blockAt.getBlock() == Blocks.POLISHED_BASALT)
+				blockCriteria = true;
+			return blockCriteria;
+		}
+
+		protected IRuleTestType<?> getType() {
+			return CUSTOM_MATCH;
+		}
+	}
+
+	private static class FeatureRegisterHandler {
+		@SubscribeEvent
+		public void registerFeature(RegistryEvent.Register<Feature<?>> event) {
+			CUSTOM_MATCH = Registry.register(Registry.RULE_TEST, new ResourceLocation("newgenstory_fanatic_version:abyssal_obsidian_match"),
+					() -> CustomRuleTest.codec);
+			feature = new OreFeature(OreFeatureConfig.CODEC) {
 				@Override
-				public boolean place(IWorld world, ChunkGenerator generator, Random rand, BlockPos pos, OreFeatureConfig config) {
-					DimensionType dimensionType = world.getDimension().getType();
+				public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, OreFeatureConfig config) {
+					RegistryKey<World> dimensionType = world.getWorld().getDimensionKey();
 					boolean dimensionCriteria = false;
-					if (dimensionType == DimensionType.THE_NETHER)
+					if (dimensionType == World.THE_NETHER)
 						dimensionCriteria = true;
 					if (!dimensionCriteria)
 						return false;
-					return super.place(world, generator, rand, pos, config);
+					return super.generate(world, generator, rand, pos, config);
 				}
-			}.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.create("abyssal_obsidian", "abyssal_obsidian", blockAt -> {
-				boolean blockCriteria = false;
-				if (blockAt.getBlock() == Blocks.AIR)
-					blockCriteria = true;
-				if (blockAt.getBlock() == Blocks.AIR)
-					blockCriteria = true;
-				return blockCriteria;
-			}), block.getDefaultState(), 2)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 0, 0, 100))));
+			};
+			configuredFeature = feature.withConfiguration(new OreFeatureConfig(CustomRuleTest.INSTANCE, block.getDefaultState(), 2)).range(100)
+					.square().func_242731_b(2);
+			event.getRegistry().register(feature.setRegistryName("abyssal_obsidian"));
+			Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation("newgenstory_fanatic_version:abyssal_obsidian"),
+					configuredFeature);
 		}
+	}
+
+	@SubscribeEvent
+	public void addFeatureToBiomes(BiomeLoadingEvent event) {
+		boolean biomeCriteria = false;
+		if (new ResourceLocation("basalt_deltas").equals(event.getName()))
+			biomeCriteria = true;
+		if (!biomeCriteria)
+			return;
+		event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> configuredFeature);
 	}
 }

@@ -3,10 +3,10 @@ package net.mcreator.newgenstoryfanaticversion.block;
 
 import net.minecraftforge.registries.ObjectHolder;
 
-import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.World;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.loot.LootContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.BlockItem;
@@ -20,15 +20,18 @@ import net.mcreator.newgenstoryfanaticversion.procedures.CrashedBedrock1EntityWa
 import net.mcreator.newgenstoryfanaticversion.itemgroup.NewGenStoryItemGroup;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 
+import java.util.stream.Stream;
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Collections;
+import java.util.AbstractMap;
 
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class CrashedBedrock1Block extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:crashed_bedrock_1")
 	public static final Block block = null;
+
 	public CrashedBedrock1Block(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 35);
 	}
@@ -39,9 +42,10 @@ public class CrashedBedrock1Block extends NewgenstoryFanaticVersionModElements.M
 		elements.items
 				.add(() -> new BlockItem(block, new Item.Properties().group(NewGenStoryItemGroup.tab)).setRegistryName(block.getRegistryName()));
 	}
+
 	public static class CustomBlock extends Block {
 		public CustomBlock() {
-			super(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(-1f, 1000000f).lightValue(0));
+			super(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(-1f, 1000000f).setLightLevel(s -> 0));
 			setRegistryName("crashed_bedrock_1");
 		}
 
@@ -65,15 +69,11 @@ public class CrashedBedrock1Block extends NewgenstoryFanaticVersionModElements.M
 			int y = pos.getY();
 			int z = pos.getZ();
 			BlockState blockstate = world.getBlockState(pos);
-			{
-				Map<String, Object> $_dependencies = new HashMap<>();
-				$_dependencies.put("entity", entity);
-				$_dependencies.put("x", x);
-				$_dependencies.put("y", y);
-				$_dependencies.put("z", z);
-				$_dependencies.put("world", world);
-				CrashedBedrock1EntityWalksOnTheBlockProcedure.executeProcedure($_dependencies);
-			}
+
+			CrashedBedrock1EntityWalksOnTheBlockProcedure.executeProcedure(Stream
+					.of(new AbstractMap.SimpleEntry<>("world", world), new AbstractMap.SimpleEntry<>("x", x), new AbstractMap.SimpleEntry<>("y", y),
+							new AbstractMap.SimpleEntry<>("z", z), new AbstractMap.SimpleEntry<>("entity", entity))
+					.collect(HashMap::new, (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
 		}
 	}
 }

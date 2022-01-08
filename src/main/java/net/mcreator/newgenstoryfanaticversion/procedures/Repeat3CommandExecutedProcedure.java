@@ -5,30 +5,26 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec2f;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.entity.Entity;
 import net.minecraft.command.ICommandSource;
 import net.minecraft.command.CommandSource;
 
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModVariables;
-import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionMod;
 
 import java.util.Map;
 
-@NewgenstoryFanaticVersionModElements.ModElement.Tag
-public class Repeat3CommandExecutedProcedure extends NewgenstoryFanaticVersionModElements.ModElement {
-	public Repeat3CommandExecutedProcedure(NewgenstoryFanaticVersionModElements instance) {
-		super(instance, 28);
-	}
+public class Repeat3CommandExecutedProcedure {
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency entity for procedure Repeat3CommandExecuted!");
+		if (dependencies.get("world") == null) {
+			if (!dependencies.containsKey("world"))
+				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency world for procedure Repeat3CommandExecuted!");
 			return;
 		}
 		if (dependencies.get("x") == null) {
@@ -46,20 +42,21 @@ public class Repeat3CommandExecutedProcedure extends NewgenstoryFanaticVersionMo
 				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency z for procedure Repeat3CommandExecuted!");
 			return;
 		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency world for procedure Repeat3CommandExecuted!");
+		if (dependencies.get("entity") == null) {
+			if (!dependencies.containsKey("entity"))
+				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency entity for procedure Repeat3CommandExecuted!");
 			return;
 		}
-		Entity entity = (Entity) dependencies.get("entity");
+		IWorld world = (IWorld) dependencies.get("world");
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
+		Entity entity = (Entity) dependencies.get("entity");
 		new Object() {
 			private int ticks = 0;
 			private float waitTicks;
 			private IWorld world;
+
 			public void start(IWorld world, int waitTicks) {
 				this.waitTicks = waitTicks;
 				MinecraftForge.EVENT_BUS.register(this);
@@ -77,28 +74,28 @@ public class Repeat3CommandExecutedProcedure extends NewgenstoryFanaticVersionMo
 
 			private void run() {
 				{
-					double _setval = (double) 4;
+					double _setval = 4;
 					entity.getCapability(NewgenstoryFanaticVersionModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 						capability.EnterPlayer = _setval;
 						capability.syncPlayerVariables(entity);
 					});
 				}
-				if (!world.getWorld().isRemote && world.getWorld().getServer() != null) {
-					world.getWorld().getServer().getCommandManager().handleCommand(
-							new CommandSource(ICommandSource.DUMMY, new Vec3d(x, y, z), Vec2f.ZERO, (ServerWorld) world, 4, "",
-									new StringTextComponent(""), world.getWorld().getServer(), null).withFeedbackDisabled(),
+				if (world instanceof ServerWorld) {
+					((World) world).getServer().getCommandManager().handleCommand(
+							new CommandSource(ICommandSource.DUMMY, new Vector3d(x, y, z), Vector2f.ZERO, (ServerWorld) world, 4, "",
+									new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
 							"kill @e[type=newgenstory_fanatic_version:leftarion]");
 				}
-				if (!world.getWorld().isRemote && world.getWorld().getServer() != null) {
-					world.getWorld().getServer().getCommandManager().handleCommand(
-							new CommandSource(ICommandSource.DUMMY, new Vec3d(x, y, z), Vec2f.ZERO, (ServerWorld) world, 4, "",
-									new StringTextComponent(""), world.getWorld().getServer(), null).withFeedbackDisabled(),
+				if (world instanceof ServerWorld) {
+					((World) world).getServer().getCommandManager().handleCommand(
+							new CommandSource(ICommandSource.DUMMY, new Vector3d(x, y, z), Vector2f.ZERO, (ServerWorld) world, 4, "",
+									new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
 							"kill @e[type=newgenstory_fanatic_version:gorbatic_start]");
 				}
-				if (!world.getWorld().isRemote && world.getWorld().getServer() != null) {
-					world.getWorld().getServer().getCommandManager().handleCommand(
-							new CommandSource(ICommandSource.DUMMY, new Vec3d(x, y, z), Vec2f.ZERO, (ServerWorld) world, 4, "",
-									new StringTextComponent(""), world.getWorld().getServer(), null).withFeedbackDisabled(),
+				if (world instanceof ServerWorld) {
+					((World) world).getServer().getCommandManager().handleCommand(
+							new CommandSource(ICommandSource.DUMMY, new Vector3d(x, y, z), Vector2f.ZERO, (ServerWorld) world, 4, "",
+									new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
 							"kill @e[type=newgenstory_fanatic_version:leftarion_start]");
 				}
 				MinecraftForge.EVENT_BUS.unregister(this);

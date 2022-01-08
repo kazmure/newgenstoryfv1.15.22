@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class MagicFire1Item extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:magic_fire_1")
 	public static final Item block = null;
+
 	public MagicFire1Item(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 66);
 	}
@@ -23,6 +24,7 @@ public class MagicFire1Item extends NewgenstoryFanaticVersionModElements.ModElem
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(64).rarity(Rarity.COMMON));

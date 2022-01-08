@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class Fragment3Item extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:fragment_3")
 	public static final Item block = null;
+
 	public Fragment3Item(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 76);
 	}
@@ -23,6 +24,7 @@ public class Fragment3Item extends NewgenstoryFanaticVersionModElements.ModEleme
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(1).rarity(Rarity.EPIC));

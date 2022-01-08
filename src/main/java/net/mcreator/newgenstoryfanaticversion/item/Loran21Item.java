@@ -15,6 +15,7 @@ import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElemen
 public class Loran21Item extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:loran_21")
 	public static final Item block = null;
+
 	public Loran21Item(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 13);
 	}
@@ -23,6 +24,7 @@ public class Loran21Item extends NewgenstoryFanaticVersionModElements.ModElement
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(NewGenStoryItemGroup.tab).maxStackSize(64).rarity(Rarity.COMMON));

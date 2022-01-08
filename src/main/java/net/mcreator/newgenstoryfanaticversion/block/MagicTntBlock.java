@@ -3,7 +3,6 @@ package net.mcreator.newgenstoryfanaticversion.block;
 
 import net.minecraftforge.registries.ObjectHolder;
 
-import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.World;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -11,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.loot.LootContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.BlockItem;
@@ -24,15 +24,18 @@ import net.mcreator.newgenstoryfanaticversion.procedures.MagicTntOnBlockRightCli
 import net.mcreator.newgenstoryfanaticversion.itemgroup.NewGenStoryItemGroup;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 
+import java.util.stream.Stream;
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Collections;
+import java.util.AbstractMap;
 
 @NewgenstoryFanaticVersionModElements.ModElement.Tag
 public class MagicTntBlock extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:magic_tnt")
 	public static final Block block = null;
+
 	public MagicTntBlock(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 12);
 	}
@@ -43,9 +46,10 @@ public class MagicTntBlock extends NewgenstoryFanaticVersionModElements.ModEleme
 		elements.items
 				.add(() -> new BlockItem(block, new Item.Properties().group(NewGenStoryItemGroup.tab)).setRegistryName(block.getRegistryName()));
 	}
+
 	public static class CustomBlock extends Block {
 		public CustomBlock() {
-			super(Block.Properties.create(Material.TNT).sound(SoundType.PLANT).hardnessAndResistance(0f, 0f).lightValue(0));
+			super(Block.Properties.create(Material.TNT).sound(SoundType.PLANT).hardnessAndResistance(0f, 0f).setLightLevel(s -> 0));
 			setRegistryName("magic_tnt");
 		}
 
@@ -73,15 +77,11 @@ public class MagicTntBlock extends NewgenstoryFanaticVersionModElements.ModEleme
 			double hitY = hit.getHitVec().y;
 			double hitZ = hit.getHitVec().z;
 			Direction direction = hit.getFace();
-			{
-				Map<String, Object> $_dependencies = new HashMap<>();
-				$_dependencies.put("entity", entity);
-				$_dependencies.put("x", x);
-				$_dependencies.put("y", y);
-				$_dependencies.put("z", z);
-				$_dependencies.put("world", world);
-				MagicTntOnBlockRightClickedProcedure.executeProcedure($_dependencies);
-			}
+
+			MagicTntOnBlockRightClickedProcedure.executeProcedure(Stream
+					.of(new AbstractMap.SimpleEntry<>("world", world), new AbstractMap.SimpleEntry<>("x", x), new AbstractMap.SimpleEntry<>("y", y),
+							new AbstractMap.SimpleEntry<>("z", z), new AbstractMap.SimpleEntry<>("entity", entity))
+					.collect(HashMap::new, (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
 			return ActionResultType.SUCCESS;
 		}
 	}

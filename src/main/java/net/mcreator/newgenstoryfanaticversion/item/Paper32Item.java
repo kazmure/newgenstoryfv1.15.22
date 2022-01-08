@@ -21,6 +21,7 @@ import java.util.List;
 public class Paper32Item extends NewgenstoryFanaticVersionModElements.ModElement {
 	@ObjectHolder("newgenstory_fanatic_version:paper_32")
 	public static final Item block = null;
+
 	public Paper32Item(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 38);
 	}
@@ -29,6 +30,7 @@ public class Paper32Item extends NewgenstoryFanaticVersionModElements.ModElement
 	public void initElements() {
 		elements.items.add(() -> new ItemCustom());
 	}
+
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
 			super(new Item.Properties().group(ItemGroup.MISC).maxStackSize(64).rarity(Rarity.COMMON));

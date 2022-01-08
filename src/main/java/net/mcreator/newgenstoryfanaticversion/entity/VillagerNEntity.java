@@ -11,16 +11,15 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.World;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.ITextComponent;
@@ -29,6 +28,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Direction;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.IPacket;
@@ -38,7 +38,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.entity.projectile.PotionEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -48,7 +48,9 @@ import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityClassification;
@@ -56,10 +58,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.client.renderer.entity.model.VillagerModel;
-import net.minecraft.client.renderer.entity.MobRenderer;
 
 import net.mcreator.newgenstoryfanaticversion.gui.DialogGui;
+import net.mcreator.newgenstoryfanaticversion.entity.renderer.VillagerNRenderer;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 
 import javax.annotation.Nullable;
@@ -74,9 +75,12 @@ public class VillagerNEntity extends NewgenstoryFanaticVersionModElements.ModEle
 	public static EntityType entity = (EntityType.Builder.<CustomEntity>create(CustomEntity::new, EntityClassification.MONSTER)
 			.setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CustomEntity::new).immuneToFire()
 			.size(0.6f, 1.95f)).build("villager_n").setRegistryName("villager_n");
+
 	public VillagerNEntity(NewgenstoryFanaticVersionModElements instance) {
 		super(instance, 87);
-		FMLJavaModLoadingContext.get().getModEventBus().register(this);
+		FMLJavaModLoadingContext.get().getModEventBus().register(new VillagerNRenderer.ModelRegisterHandler());
+		FMLJavaModLoadingContext.get().getModEventBus().register(new EntityAttributesRegisterHandler());
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@Override
@@ -84,25 +88,29 @@ public class VillagerNEntity extends NewgenstoryFanaticVersionModElements.ModEle
 		elements.entities.add(() -> entity);
 	}
 
+	@SubscribeEvent
+	public void addFeatureToBiomes(BiomeLoadingEvent event) {
+		event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(entity, 20, 4, 4));
+	}
+
 	@Override
 	public void init(FMLCommonSetupEvent event) {
-		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
-			biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(entity, 20, 4, 4));
-		}
 		EntitySpawnPlacementRegistry.register(entity, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
 				MonsterEntity::canMonsterSpawn);
 	}
 
-	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
-	public void registerModels(ModelRegistryEvent event) {
-		RenderingRegistry.registerEntityRenderingHandler(entity, renderManager -> new MobRenderer(renderManager, new VillagerModel(0), 0.5f) {
-			@Override
-			public ResourceLocation getEntityTexture(Entity entity) {
-				return new ResourceLocation("newgenstory_fanatic_version:textures/villager_.png");
-			}
-		});
+	private static class EntityAttributesRegisterHandler {
+		@SubscribeEvent
+		public void onEntityAttributeCreation(EntityAttributeCreationEvent event) {
+			AttributeModifierMap.MutableAttribute ammma = MobEntity.func_233666_p_();
+			ammma = ammma.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3);
+			ammma = ammma.createMutableAttribute(Attributes.MAX_HEALTH, 1000);
+			ammma = ammma.createMutableAttribute(Attributes.ARMOR, 0);
+			ammma = ammma.createMutableAttribute(Attributes.ATTACK_DAMAGE, 3);
+			event.put(entity, ammma.create());
+		}
 	}
+
 	public static class CustomEntity extends CreatureEntity {
 		public CustomEntity(FMLPlayMessages.SpawnEntity packet, World world) {
 			this(entity, world);
@@ -146,7 +154,7 @@ public class VillagerNEntity extends NewgenstoryFanaticVersionModElements.ModEle
 
 		@Override
 		public boolean attackEntityFrom(DamageSource source, float amount) {
-			if (source.getImmediateSource() instanceof ArrowEntity)
+			if (source.getImmediateSource() instanceof AbstractArrowEntity)
 				return false;
 			if (source.getImmediateSource() instanceof PlayerEntity)
 				return false;
@@ -174,6 +182,7 @@ public class VillagerNEntity extends NewgenstoryFanaticVersionModElements.ModEle
 				return false;
 			return super.attackEntityFrom(source, amount);
 		}
+
 		private final ItemStackHandler inventory = new ItemStackHandler(9) {
 			@Override
 			public int getSlotLimit(int slot) {
@@ -182,6 +191,7 @@ public class VillagerNEntity extends NewgenstoryFanaticVersionModElements.ModEle
 		};
 		private final CombinedInvWrapper combined = new CombinedInvWrapper(inventory, new EntityHandsInvWrapper(this),
 				new EntityArmorInvWrapper(this));
+
 		@Override
 		public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction side) {
 			if (this.isAlive() && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && side == null)
@@ -215,9 +225,9 @@ public class VillagerNEntity extends NewgenstoryFanaticVersionModElements.ModEle
 		}
 
 		@Override
-		public boolean processInteract(PlayerEntity sourceentity, Hand hand) {
+		public ActionResultType func_230254_b_(PlayerEntity sourceentity, Hand hand) {
 			ItemStack itemstack = sourceentity.getHeldItem(hand);
-			boolean retval = true;
+			ActionResultType retval = ActionResultType.func_233537_a_(this.world.isRemote());
 			if (sourceentity instanceof ServerPlayerEntity) {
 				NetworkHooks.openGui((ServerPlayerEntity) sourceentity, new INamedContainerProvider() {
 					@Override
@@ -228,33 +238,19 @@ public class VillagerNEntity extends NewgenstoryFanaticVersionModElements.ModEle
 					@Override
 					public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player) {
 						PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
-						packetBuffer.writeBlockPos(new BlockPos(sourceentity));
+						packetBuffer.writeBlockPos(new BlockPos(sourceentity.getPosition()));
 						packetBuffer.writeByte(0);
 						packetBuffer.writeVarInt(CustomEntity.this.getEntityId());
 						return new DialogGui.GuiContainerMod(id, inventory, packetBuffer);
 					}
 				}, buf -> {
-					buf.writeBlockPos(new BlockPos(sourceentity));
+					buf.writeBlockPos(new BlockPos(sourceentity.getPosition()));
 					buf.writeByte(0);
 					buf.writeVarInt(this.getEntityId());
 				});
 			}
-			super.processInteract(sourceentity, hand);
+			super.func_230254_b_(sourceentity, hand);
 			return retval;
-		}
-
-		@Override
-		protected void registerAttributes() {
-			super.registerAttributes();
-			if (this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED) != null)
-				this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3);
-			if (this.getAttribute(SharedMonsterAttributes.MAX_HEALTH) != null)
-				this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1000);
-			if (this.getAttribute(SharedMonsterAttributes.ARMOR) != null)
-				this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(0);
-			if (this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) == null)
-				this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-			this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3);
 		}
 
 		public void livingTick() {

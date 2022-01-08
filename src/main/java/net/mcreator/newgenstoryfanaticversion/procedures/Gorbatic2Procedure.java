@@ -1,5 +1,6 @@
 package net.mcreator.newgenstoryfanaticversion.procedures;
 
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.TickEvent;
@@ -9,9 +10,8 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec2f;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.particles.ParticleTypes;
@@ -28,23 +28,38 @@ import net.minecraft.advancements.Advancement;
 
 import net.mcreator.newgenstoryfanaticversion.entity.LeftarionStartEntity;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModVariables;
-import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionModElements;
 import net.mcreator.newgenstoryfanaticversion.NewgenstoryFanaticVersionMod;
 
 import java.util.Map;
 import java.util.HashMap;
 
-@NewgenstoryFanaticVersionModElements.ModElement.Tag
-public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.ModElement {
-	public Gorbatic2Procedure(NewgenstoryFanaticVersionModElements instance) {
-		super(instance, 83);
-		MinecraftForge.EVENT_BUS.register(this);
+public class Gorbatic2Procedure {
+	@Mod.EventBusSubscriber
+	private static class GlobalTrigger {
+		@SubscribeEvent
+		public static void onAdvancement(AdvancementEvent event) {
+			PlayerEntity entity = event.getPlayer();
+			double i = entity.getPosX();
+			double j = entity.getPosY();
+			double k = entity.getPosZ();
+			Advancement advancement = event.getAdvancement();
+			World world = entity.world;
+			Map<String, Object> dependencies = new HashMap<>();
+			dependencies.put("x", i);
+			dependencies.put("y", j);
+			dependencies.put("z", k);
+			dependencies.put("world", world);
+			dependencies.put("entity", entity);
+			dependencies.put("advancement", advancement);
+			dependencies.put("event", event);
+			executeProcedure(dependencies);
+		}
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency entity for procedure Gorbatic2!");
+		if (dependencies.get("world") == null) {
+			if (!dependencies.containsKey("world"))
+				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency world for procedure Gorbatic2!");
 			return;
 		}
 		if (dependencies.get("x") == null) {
@@ -62,25 +77,25 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency z for procedure Gorbatic2!");
 			return;
 		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency world for procedure Gorbatic2!");
+		if (dependencies.get("entity") == null) {
+			if (!dependencies.containsKey("entity"))
+				NewgenstoryFanaticVersionMod.LOGGER.warn("Failed to load dependency entity for procedure Gorbatic2!");
 			return;
 		}
-		Entity entity = (Entity) dependencies.get("entity");
+		IWorld world = (IWorld) dependencies.get("world");
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
-		if ((((entity.getCapability(NewgenstoryFanaticVersionModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new NewgenstoryFanaticVersionModVariables.PlayerVariables())).EnterPlayer) == 17)) {
-			if (world instanceof World && !world.getWorld().isRemote) {
-				Entity entityToSpawn = new LeftarionStartEntity.CustomEntity(LeftarionStartEntity.entity, world.getWorld());
+		Entity entity = (Entity) dependencies.get("entity");
+		if ((entity.getCapability(NewgenstoryFanaticVersionModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new NewgenstoryFanaticVersionModVariables.PlayerVariables())).EnterPlayer == 17) {
+			if (world instanceof ServerWorld) {
+				Entity entityToSpawn = new LeftarionStartEntity.CustomEntity(LeftarionStartEntity.entity, (World) world);
 				entityToSpawn.setLocationAndAngles((x + 5), y, z, (float) 0, (float) 0);
 				entityToSpawn.setRenderYawOffset((float) 0);
 				entityToSpawn.setRotationYawHead((float) 0);
 				if (entityToSpawn instanceof MobEntity)
-					((MobEntity) entityToSpawn).onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entityToSpawn)),
+					((MobEntity) entityToSpawn).onInitialSpawn((ServerWorld) world, world.getDifficultyForLocation(entityToSpawn.getPosition()),
 							SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);
 				world.addEntity(entityToSpawn);
 			}
@@ -88,6 +103,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 				private int ticks = 0;
 				private float waitTicks;
 				private IWorld world;
+
 				public void start(IWorld world, int waitTicks) {
 					this.waitTicks = waitTicks;
 					MinecraftForge.EVENT_BUS.register(this);
@@ -104,7 +120,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 				}
 
 				private void run() {
-					if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+					if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 						((PlayerEntity) entity).sendStatusMessage(
 								new StringTextComponent("<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u041A\u0443-\u043A\u0443...!"), (false));
 					}
@@ -112,6 +128,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 						private int ticks = 0;
 						private float waitTicks;
 						private IWorld world;
+
 						public void start(IWorld world, int waitTicks) {
 							this.waitTicks = waitTicks;
 							MinecraftForge.EVENT_BUS.register(this);
@@ -128,7 +145,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 						}
 
 						private void run() {
-							if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+							if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 								((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
 										"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u0414-\u0434\u0440\u0430\u043A\u043E\u043D. \u0422\u0430\u043A \u0432\u044B \u0434-\u0434\u0440\u0443\u0437\u044C\u044F?"),
 										(false));
@@ -137,6 +154,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 								private int ticks = 0;
 								private float waitTicks;
 								private IWorld world;
+
 								public void start(IWorld world, int waitTicks) {
 									this.waitTicks = waitTicks;
 									MinecraftForge.EVENT_BUS.register(this);
@@ -153,7 +171,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 								}
 
 								private void run() {
-									if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+									if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 										((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
 												"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u0414\u0430-\u0430, \u0434\u0440\u0443\u0437\u044C\u044F."),
 												(false));
@@ -162,6 +180,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 										private int ticks = 0;
 										private float waitTicks;
 										private IWorld world;
+
 										public void start(IWorld world, int waitTicks) {
 											this.waitTicks = waitTicks;
 											MinecraftForge.EVENT_BUS.register(this);
@@ -178,7 +197,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 										}
 
 										private void run() {
-											if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+											if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 												((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
 														"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u041E\u043D... \u043E\u043D \u0433\u043E\u0432\u043E\u0440\u0438\u0442 \u0442\u0435\u0431\u0435 \u043D\u0435 \u0432\u0441\u0451."),
 														(false));
@@ -187,6 +206,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 												private int ticks = 0;
 												private float waitTicks;
 												private IWorld world;
+
 												public void start(IWorld world, int waitTicks) {
 													this.waitTicks = waitTicks;
 													MinecraftForge.EVENT_BUS.register(this);
@@ -203,7 +223,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 												}
 
 												private void run() {
-													if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+													if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 														((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
 																"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u0421\u043E\u0432\u0441\u0435\u043C! \u0421\u043E\u0432\u0441\u0435\u043C \u043D\u0435 \u0432\u0441\u0451!"),
 																(false));
@@ -212,6 +232,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 														private int ticks = 0;
 														private float waitTicks;
 														private IWorld world;
+
 														public void start(IWorld world, int waitTicks) {
 															this.waitTicks = waitTicks;
 															MinecraftForge.EVENT_BUS.register(this);
@@ -228,7 +249,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 														}
 
 														private void run() {
-															if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+															if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 																((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
 																		"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u041E\u0431\u043C\u0430\u043D\u044B\u0432\u0430\u0435\u0442..."),
 																		(false));
@@ -237,6 +258,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																private int ticks = 0;
 																private float waitTicks;
 																private IWorld world;
+
 																public void start(IWorld world, int waitTicks) {
 																	this.waitTicks = waitTicks;
 																	MinecraftForge.EVENT_BUS.register(this);
@@ -253,7 +275,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																}
 
 																private void run() {
-																	if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+																	if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 																		((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
 																				"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u0418, \u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442!"),
 																				(false));
@@ -262,6 +284,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																		private int ticks = 0;
 																		private float waitTicks;
 																		private IWorld world;
+
 																		public void start(IWorld world, int waitTicks) {
 																			this.waitTicks = waitTicks;
 																			MinecraftForge.EVENT_BUS.register(this);
@@ -278,7 +301,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																		}
 
 																		private void run() {
-																			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+																			if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 																				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
 																						"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u041E\u043D, \u043E\u043D \u043F\u043B\u043E\u0445\u043E\u0439!"),
 																						(false));
@@ -287,6 +310,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																				private int ticks = 0;
 																				private float waitTicks;
 																				private IWorld world;
+
 																				public void start(IWorld world, int waitTicks) {
 																					this.waitTicks = waitTicks;
 																					MinecraftForge.EVENT_BUS.register(this);
@@ -303,7 +327,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																				}
 
 																				private void run() {
-																					if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+																					if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 																						((PlayerEntity) entity).sendStatusMessage(
 																								new StringTextComponent(
 																										"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u041E\u0447\u0435\u043D\u044C..."),
@@ -313,6 +337,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																						private int ticks = 0;
 																						private float waitTicks;
 																						private IWorld world;
+
 																						public void start(IWorld world, int waitTicks) {
 																							this.waitTicks = waitTicks;
 																							MinecraftForge.EVENT_BUS.register(this);
@@ -330,7 +355,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 
 																						private void run() {
 																							if (entity instanceof PlayerEntity
-																									&& !entity.world.isRemote) {
+																									&& !entity.world.isRemote()) {
 																								((PlayerEntity) entity).sendStatusMessage(
 																										new StringTextComponent(
 																												"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u0418 \u0433\u043E\u0432\u043E\u0440\u0438\u0442 \u043F\u043B\u043E\u0445\u043E \u043F\u0440\u043E \u043D\u0430\u0441! \u041F\u0440\u043E \u043D\u0430\u0448\u0435\u0433\u043E \u0433\u043E\u0441\u043F\u043E\u0434\u0438\u043D\u0430!"),
@@ -340,6 +365,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																								private int ticks = 0;
 																								private float waitTicks;
 																								private IWorld world;
+
 																								public void start(IWorld world, int waitTicks) {
 																									this.waitTicks = waitTicks;
 																									MinecraftForge.EVENT_BUS.register(this);
@@ -357,7 +383,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 
 																								private void run() {
 																									if (entity instanceof PlayerEntity
-																											&& !entity.world.isRemote) {
+																											&& !entity.world.isRemote()) {
 																										((PlayerEntity) entity).sendStatusMessage(
 																												new StringTextComponent(
 																														"<\u0413\u043E\u0440\u0431\u0430\u0442\u0438\u043A> \u041E\u043D \u0434-\u0434\u043E\u0431\u0440\u044B\u0439..."),
@@ -367,6 +393,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																										private int ticks = 0;
 																										private float waitTicks;
 																										private IWorld world;
+
 																										public void start(IWorld world,
 																												int waitTicks) {
 																											this.waitTicks = waitTicks;
@@ -386,7 +413,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 
 																										private void run() {
 																											if (entity instanceof PlayerEntity
-																													&& !entity.world.isRemote) {
+																													&& !entity.world.isRemote()) {
 																												((PlayerEntity) entity)
 																														.sendStatusMessage(
 																																new StringTextComponent(
@@ -397,6 +424,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																												private int ticks = 0;
 																												private float waitTicks;
 																												private IWorld world;
+
 																												public void start(IWorld world,
 																														int waitTicks) {
 																													this.waitTicks = waitTicks;
@@ -489,24 +517,22 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																																		(int) 1, 3, 3,
 																																		3, 1);
 																													}
-																													if (!world.getWorld().isRemote
-																															&& world.getWorld()
-																																	.getServer() != null) {
-																														world.getWorld().getServer()
+																													if (world instanceof ServerWorld) {
+																														((World) world).getServer()
 																																.getCommandManager()
 																																.handleCommand(
 																																		new CommandSource(
 																																				ICommandSource.DUMMY,
-																																				new Vec3d(
+																																				new Vector3d(
 																																						x,
 																																						y,
 																																						z),
-																																				Vec2f.ZERO,
+																																				Vector2f.ZERO,
 																																				(ServerWorld) world,
 																																				4, "",
 																																				new StringTextComponent(
 																																						""),
-																																				world.getWorld()
+																																				((World) world)
 																																						.getServer(),
 																																				null).withFeedbackDisabled(),
 																																		"kill @e[type=newgenstory_fanatic_version:gorbatic_start]");
@@ -515,6 +541,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 																														private int ticks = 0;
 																														private float waitTicks;
 																														private IWorld world;
+
 																														public void start(
 																																IWorld world,
 																																int waitTicks) {
@@ -536,7 +563,7 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 
 																														private void run() {
 																															{
-																																double _setval = (double) 19;
+																																double _setval = 19;
 																																entity.getCapability(
 																																		NewgenstoryFanaticVersionModVariables.PLAYER_VARIABLES_CAPABILITY,
 																																		null)
@@ -593,31 +620,12 @@ public class Gorbatic2Procedure extends NewgenstoryFanaticVersionModElements.Mod
 				}
 			}.start(world, (int) 200);
 			{
-				double _setval = (double) 18;
+				double _setval = 18;
 				entity.getCapability(NewgenstoryFanaticVersionModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.EnterPlayer = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}
 		}
-	}
-
-	@SubscribeEvent
-	public void onAdvancement(AdvancementEvent event) {
-		PlayerEntity entity = event.getPlayer();
-		double i = entity.getPosX();
-		double j = entity.getPosY();
-		double k = entity.getPosZ();
-		Advancement advancement = event.getAdvancement();
-		World world = entity.world;
-		Map<String, Object> dependencies = new HashMap<>();
-		dependencies.put("x", i);
-		dependencies.put("y", j);
-		dependencies.put("z", k);
-		dependencies.put("world", world);
-		dependencies.put("entity", entity);
-		dependencies.put("advancement", advancement);
-		dependencies.put("event", event);
-		this.executeProcedure(dependencies);
 	}
 }
